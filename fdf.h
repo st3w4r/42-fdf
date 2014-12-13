@@ -33,16 +33,16 @@ typedef struct	s_point {
 
 typedef struct	s_line {
 	t_point	**points;
-	int		nb;
+	int		len;
 }				t_line;
 
 typedef struct	s_map {
 	t_line **lines;
-
+	int		len;
 }				t_map;
 
 t_map			*ft_parse_map(char **av);
-t_point			**ft_points(char *line, int nb_line);
+int				ft_points(char *line, int nb_line, t_point ***array_points);
 void			ft_parse_points (char *nb_str);
 int				ft_getnbr(char *str);
 int				ft_map_line(char *map);

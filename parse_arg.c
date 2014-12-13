@@ -32,24 +32,21 @@ int		ft_getnbr(char *str)
 //
 // }
 
-t_point		**ft_points(char *line, int nb_line)
+int		ft_points(char *line, int nb_line, t_point ***array_points)
 {
 	char **array_str;
-	t_point **array_points;
+	// t_point **array_points;
 	t_point *a_point;
 
 	int i;
-	int nb_points;
+	// int nb_points;
 
 	array_str = ft_strsplit(line, ' ');
 	i = 0;
-	nb_points = 1;
+	// nb_points = 0;
 	while (array_str[i] != 0)
-	{
 		i++;
-		nb_points++;
-	}
-	array_points = (t_point**)malloc(sizeof(t_point) * nb_points);
+	(*array_points) = (t_point**)malloc(sizeof(t_point) * i);
 	i = 0;
 	while (array_str[i] != 0)
 	{
@@ -60,10 +57,10 @@ t_point		**ft_points(char *line, int nb_line)
 
 		// printf("x: %d y: %d z: %d", a_point->x, a_point->y, a_point->z);
 		// puts("");
-		array_points[i] = a_point;
+		(*array_points)[i] = a_point;
 		i++;
 	}
-	return (array_points);
+	return (i);
 }
 
 int		ft_map_line(char *map)
@@ -95,20 +92,23 @@ t_map	*ft_parse_map(char **av)
 	int		nb_line;
 	t_map	*map;
 	t_line	*line_map;
-	int		i;
-	int		j;
+	t_point **array_points;
+	// int		i;
+	// int		j;
 
 	fd = 0;
 	nb_line = 0;
 	map = (t_map*)malloc(sizeof(t_map));
 	map->lines = (t_line**)malloc(sizeof(t_line) * ft_map_line(av[1]));
+	map->len = 0;
 	if ((fd = open(av[1], O_RDONLY)) > 0)
 	{
 		while ((val = get_next_line(fd, &line)) > 0)
 		{
 			line_map = (t_line*)malloc(sizeof(t_line));
-			line_map->nb = nb_line;
-			line_map->points = ft_points(line, nb_line);
+			// line_map->nb = nb_line;
+			line_map->len = ft_points(line, nb_line, &array_points);
+			line_map->points = array_points;
 			map->lines[nb_line] = line_map;
 
 			// puts(line);
@@ -116,13 +116,17 @@ t_map	*ft_parse_map(char **av)
 			// puts("");
 			nb_line++;
 		}
+		map->len = nb_line;
 	}
+/*
 	i = 0;
-	while (i < nb_line)
+	while (i < map->len)
 	{
 		j = 0;
-		while (j < 19)
+		ft_putnbr(map->lines[i]->len);
+		while (j < map->lines[i]->len)
 		{
+			// ft_putnbr(map->lines[i]->points[j]->x);
 			printf("x: %d y: %d z: %d", map->lines[i]->points[j]->x, map->lines[i]->points[j]->y, map->lines[i]->points[j]->z);
 			puts(" ");
 			// map->lines[i]->points[j]->x
@@ -130,7 +134,6 @@ t_map	*ft_parse_map(char **av)
 		}
 		puts(" ");
 		i++;
-	}
-	// ft_putnbr(nb_line);
+	}*/
 	return (map);
 }
