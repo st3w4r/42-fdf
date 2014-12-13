@@ -19,7 +19,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC =	main.c \
 		parse_arg.c \
-		get_next_line.c
+		get_next_line.c \
+		fdf_draw.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

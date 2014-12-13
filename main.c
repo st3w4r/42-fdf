@@ -12,35 +12,23 @@
 
 #include "fdf.h"
 
-void draw (void *mlx, void *win)
-{
-	int x;
-	int y;
-
-	x = 50;
-	while (x < 200)
-	{
-		y = 50;
-		while (y < 200)
-		{
-			mlx_pixel_put(mlx, win, y, x, 0xFF0000);
-			// usleep(500);
-			y++;
-		}
-		x++;
-	}
-}
-
 int		main(int argc, char **argv)
 {
 	// void *mlx;
 	// void *win;
-	//t_env e;
-	// t_map *map;
+	t_env e;
+	t_map *map;
 
 	// map =
 	if (argc == 2)
-		ft_parse_map(argv);
+		map = ft_parse_map(argv);
+
+	ft_putnbr(map->len);
+	draw_windows("42", 600, 600, &e);
+	draw_point((*map->lines[5]->points[8]), e, 0xFF0000);
+	draw_point((*map->lines[6]->points[8]), e, 0xFF0000);
+	draw_point((*map->lines[5]->points[9]), e, 0xFF0000);
+	draw_point((*map->lines[6]->points[9]), e, 0xFF0000);
 	// map = (*t_map)malloc(sizeof(t_map));
 
 
@@ -50,8 +38,8 @@ int		main(int argc, char **argv)
 	// puts("in");
 	// printf("%d %s", argc, argv[0]);
 	draw(e.mlx, e.win);
-	sleep(5);
 	*/
+	sleep(5);
 
 
 	return (0);
