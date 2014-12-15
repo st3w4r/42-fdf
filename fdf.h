@@ -20,9 +20,11 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define POS_N 20
-# define DEC_T 1
-# define DEC_L 1
+// # define POS_N 0
+# define DEC_T 100
+# define DEC_L 100
+# define SIZE_W 20;
+# define SIZE_H 20;
 
 typedef struct	s_env {
 	void *mlx;
@@ -55,5 +57,5 @@ void			draw(void *mlx, void *win);
 void			draw_map(t_map map, t_env e, int color);
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_point(t_point point, t_env e, int color);
-void			draw_line(t_point point1, t_point point2, t_env e, int color);
+void			draw_line(t_point point1, t_point point2, t_env env, int color);
 #endif

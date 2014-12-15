@@ -98,20 +98,27 @@ void draw_map(t_map map, t_env e, int color)
 	int x;
 	int y;
 
-	x = 0;
-	while (x < map.len)
+	y = 0;
+	while (y < map.len)
 	{
-		y = 0;
-		while (y < map.lines[x]->len)
+		x = 0;
+		while (x < (map.lines[y]->len))
 		{
-			draw_point((*map.lines[x]->points[y]), e, color);
-			// draw_line(e.mlx, e.win, map.lines[x]->points[y]->x, map.lines[x]->points[y]->y, map.lines[x +1]->points[y]->x, map.lines[x +1]->points[y]->y, color);
-			y++;
+			if (map.lines[y]->points[x]->z > 1)
+				color = 0x00FF00;
+			else
+				color = 0xFF0000;
+			// draw_point((*map.lines[y]->points[x]), e, color);
+			if (map.lines[y]->points[x + 1])
+				draw_line((*map.lines[y]->points[x]), (*map.lines[y]->points[x + 1]), e, color);
+			if (map.lines[y + 1])
+				draw_line((*map.lines[y]->points[x]), (*map.lines[y + 1]->points[x]), e, color);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
-
+/*
 void draw_line(t_point point1, t_point point2, t_env env, int color)
 {
 	int dx;
@@ -167,14 +174,46 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 						}
 					}
 				}
+				else
+				{
+					if (dx >= -dy)
+					{
+						e = dx;
+						dx *= 2;
+						dy *= 2;
+						while (point1.x < point2.x)
+						{
+							draw
+						}
+					}
+				}
 			}
 		}
+	}
+}*/
+
+void draw_line(t_point point1, t_point point2, t_env env, int color)
+{
+	// ft_putnbr(point1.x);
+	// puts(" x");
+	// ft_putnbr(point1.y);
+	// puts(" y");
+	while (point1.x < point2.x)
+	{
+		draw_point(point1, env, color);
+		point1.x++;
+	}
+
+	while (point1.y < point2.y)
+	{
+		draw_point(point1, env, color);
+		point1.y++;
 	}
 }
 
 void draw_point(t_point point, t_env e, int color)
 {
-	mlx_pixel_put(e.mlx, e.win, (point.x + DEC_L ) * POS_N, (point.y + DEC_T )* POS_N, color);
+	mlx_pixel_put(e.mlx, e.win, (point.x + DEC_L), (point.y + DEC_T), color);
 }
 
 void draw(void *mlx, void *win)

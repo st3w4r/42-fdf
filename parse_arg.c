@@ -51,8 +51,8 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 	while (array_str[i] != 0)
 	{
 		a_point = (t_point*)malloc(sizeof(t_point));
-		a_point->x = i;
-		a_point->y = nb_line;
+		a_point->x = i * SIZE_W;
+		a_point->y = nb_line * SIZE_H;
 		a_point->z = ft_getnbr(array_str[i]);
 
 		// printf("x: %d y: %d z: %d", a_point->x, a_point->y, a_point->z);

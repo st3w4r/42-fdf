@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 		map = ft_parse_map(argv);
 
 	ft_putnbr(map->len);
-	draw_windows("42", 600, 600, &e);
+	draw_windows("42", 1000, 1000, &e);
 
 	draw_map(*map, e, 0xFF0000);
 	// map = (*t_map)malloc(sizeof(t_map));
@@ -37,7 +37,7 @@ int		main(int argc, char **argv)
 	// printf("%d %s", argc, argv[0]);
 	draw(e.mlx, e.win);
 	*/
-	sleep(5);
+	sleep(50);
 
 
 	return (0);

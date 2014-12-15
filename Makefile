@@ -17,6 +17,8 @@ PATH_OBJ = ./
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
+HEAD = fdf.h
+
 SRC =	main.c \
 		parse_arg.c \
 		get_next_line.c \
@@ -24,9 +26,10 @@ SRC =	main.c \
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(HEAD)
 	make -C libft/
 	$(CC) $(CFLAGS) -I libft/includes/ -c $(SRC)
 	$(CC) -o $(NAME) $(OBJ) -L libft/ -lft -L/usr/X11/lib -lmlx -lXext -lX11
