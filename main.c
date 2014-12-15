@@ -27,11 +27,6 @@ int		main(int argc, char **argv)
 	draw_windows("42", 600, 600, &e);
 
 	draw_map(*map, e, 0xFF0000);
-
-	draw_point((*map->lines[5]->points[8]), e, 0xFF0000);
-	draw_point((*map->lines[6]->points[8]), e, 0xFF0000);
-	draw_point((*map->lines[5]->points[9]), e, 0xFF0000);
-	draw_point((*map->lines[6]->points[9]), e, 0xFF0000);
 	// map = (*t_map)malloc(sizeof(t_map));
 
 
