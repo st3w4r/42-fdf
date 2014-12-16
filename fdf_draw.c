@@ -247,8 +247,89 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 					}
 					else
 					{
-						
+						e = dy;
+						dy *= 2;
+						dx *= 2;
+						while (point1.y < point2.y)
+						{
+							draw_point(point1, env, color);
+							e += dx;
+							if (e <= 0)
+							{
+								point1.x--;
+								e += dy;
+							}
+							point1.y++;
+						}
 					}
+				}
+				else
+				{
+					if (dx <= dy)
+					{
+						e = dx;
+						dx *= 2;
+						dy *= 2;
+						while (point1.x < point2.x)
+						{
+							draw_point(point1, env, color);
+							e -= dy;
+							if (e >= 0)
+							{
+								point1.y--;
+								e += dx;
+							}
+							point1.x--;
+						}
+					}
+					else
+					{
+						e = dy;
+						dy *= 2;
+						dx *= 2;
+						while (point1.y < point2.y)
+						{
+							draw_point(point1, env, color);
+							e -= dx;
+							if (e >= 0)
+							{
+								point1.x--;
+								e += dy;
+							}
+							point1.y--;
+						}
+					}
+				}
+			}
+			else
+			{
+				while (point1.x-- < point2.x)
+				{
+					draw_point(point1, env, color);
+					point1.x--;
+				}
+			}
+		}
+	}
+	else
+	{
+		dy = point2.y - point1.y;
+		if (dy != 0)
+		{
+			if (dy > 0)
+			{
+				while (point1.y < point2.y)
+				{
+					draw_point(point1, env, color);
+					point1.y++;
+				}
+			}
+			else
+			{
+				while (point1.y < point2.y)
+				{
+					draw_point(point1, env, color);
+					point1.y--;
 				}
 			}
 		}
