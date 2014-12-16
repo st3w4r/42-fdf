@@ -118,7 +118,7 @@ void draw_map(t_map map, t_env e, int color)
 		y++;
 	}
 }
-/*
+
 void draw_line(t_point point1, t_point point2, t_env env, int color)
 {
 	int dx;
@@ -183,31 +183,121 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 						dy *= 2;
 						while (point1.x < point2.x)
 						{
-							draw
+							draw_point(point1, env, color);
+							e += dy;
+							if (e < 0)
+							{
+								point1.y--;
+								e += dx;
+							}
+							point1.x++
 						}
+					}
+					else
+					{
+						e = dy;
+						dy *= 2;
+						dx *= 2;
+						while (point1.y < point2.y)
+						{
+							draw_point(point1, env, color);
+							e += dx;
+							if (e > 0)
+							{
+								point1.x++;
+								e += dy;
+							}
+							point1.y--;
+						}
+					}
+				}
+			}
+			else
+			{
+				while (point1.x < point2.x)
+				{
+					draw_point(point1, env, color);
+					point1.x++;
+				}
+			}
+		}
+		else
+		{
+			dy = point2.y - point1.y;
+			if (dy != 0)
+			{
+				if (dy > 0)
+				{
+					if (-dx >= dy)
+					{
+						e = dx;
+						dx *= 2;
+						dy *= 2;
+						while (point1.x < point2.x)
+						{
+							draw_point(point1, env, color);
+							e += dy;
+							if (e >= 0)
+							{
+								point1.y++;
+								e += dx;
+							}
+							point1.x--;
+						}
+					}
+					else
+					{
+						
 					}
 				}
 			}
 		}
 	}
-}*/
+}
 
-void draw_line(t_point point1, t_point point2, t_env env, int color)
-{
 	// ft_putnbr(point1.x);
 	// puts(" x");
 	// ft_putnbr(point1.y);
 	// puts(" y");
-	while (point1.x < point2.x)
+void draw_line(t_point point1, t_point point2, t_env env, int color)
+{
+	if (point1.y == point2.y)
 	{
-		draw_point(point1, env, color);
-		point1.x++;
+		if (point1.x < point2.x)
+		{
+			while (point1.x < point2.x)
+			{
+				draw_point(point1, env, color);
+				point1.x++;
+			}
+		}
+		else
+		{
+			while (point1.x > point2.x)
+			{
+				draw_point(point1, env, color);
+				point1.x--;
+			}
+		}
 	}
-
-	while (point1.y < point2.y)
+	else if (point1.x == point2.x)
 	{
-		draw_point(point1, env, color);
-		point1.y++;
+		if (point1.y < point2.y)
+		{
+			while (point1.y < point2.y)
+			{
+				draw_point(point1, env, color);
+				point1.y++;
+			}
+		}
+		else
+		{
+			while (point1.y > point2.y)
+			{
+				draw_point(point1, env, color);
+				point1.y--;
+			}
+		}
 	}
 }
 
