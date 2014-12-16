@@ -19,80 +19,6 @@ void draw_windows(char *title, int weight, int height, t_env *e)
 	e->win = mlx_new_window(e->mlx, weight, height, title);
 }
 
-/*
-void draw_line(void *mlx, void *win, int x1, int y1, int x2, int y2, int color)
-{
-    int dx;
-    int dy;
-    int i;
-    int e;
-
-    int incx;
-    int incy;
-    int inc1;
-    int inc2;
-    int x;
-    int y;
-
-    dx = x2 - x1;
-    dy = y2 - y1;
-    if (dx < 0)
-        dx = -dx;
-    if (dy < 0)
-        dy = -dy;
-    incx = 1;
-    if (x2 < x1)
-        incx = -1;
-    incy = 1;
-    if (y2 < y1)
-        incy = -1;
-    x = x1;
-    y = y1;
-
-    if (dx > dy)
-    {
-        mlx_pixel_put(mlx, win, x, y, color);
-        e = 2 * dy - dx;
-        inc1 = 2 * (dy - dx);
-        inc2 = 2 * dy;
-        i = 0;
-        while (i < dx)
-        {
-            if (e >= 0)
-            {
-                y += incy;
-                e += inc1;
-            }
-            else
-                e += inc2;
-            x += incx;
-            mlx_pixel_put(mlx, win, x, y, color);
-            i++;
-        }
-    }
-    else
-    {
-        mlx_pixel_put(mlx, win, x, y, color);
-        e = 2 * dx - dy;
-        inc1 = 2 * (dx - dy);
-        inc2 = 2 * dx;
-        i = 0;
-        while (i < dy)
-        {
-            if (e >= 0)
-            {
-                x += incx;
-                e += inc1;
-            }
-            else
-                e += inc2;
-            y += incy;
-            mlx_pixel_put(mlx, win, x, y, color);
-            i++;
-        }
-    }
-}*/
-
 void draw_map(t_map map, t_env e, int color)
 {
 	int x;
@@ -125,7 +51,7 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 	int dy;
 	int e;
 
-	dx = point2.x - point1.y;
+	dx = point2.x - point1.x;
 	if (dx != 0)
 	{
 		if (dx > 0)
