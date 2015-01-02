@@ -12,5 +12,8 @@
 
 void	ft_cal_matrice(t_point p, t_matrice m)
 {
-	p->x =  p->x * m->a1
+	p->x =  p->x * m->a1 + p->y * m->a2 + p->z * m->a3 p->s * m->a4;
+	p->y =  p->x * m->b1 + p->y * m->b2 + p->z * m->b3 p->s * m->b4;
+	p->z =  p->x * m->c1 + p->y * m->c2 + p->z * m->c3 p->s * m->c4;
+	p->s = 1;
 }

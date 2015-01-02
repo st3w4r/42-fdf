@@ -22,7 +22,8 @@ HEAD = fdf.h
 SRC =	main.c \
 		parse_arg.c \
 		get_next_line.c \
-		fdf_draw.c
+		fdf_draw.c \
+		fdf_error.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

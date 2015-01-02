@@ -19,6 +19,10 @@ int		main(int argc, char **argv)
 	t_env e;
 	t_map *map;
 
+	// t_point *p1;
+	// t_point *p2;
+
+
 	// map =
 	if (argc == 2)
 		map = ft_parse_map(argv);
@@ -37,6 +41,18 @@ int		main(int argc, char **argv)
 	// printf("%d %s", argc, argv[0]);
 	draw(e.mlx, e.win);
 	*/
+	/*
+	p1 = (t_point*)malloc(sizeof(t_point));
+	p2 = (t_point*)malloc(sizeof(t_point));
+
+	p1->x = 10 * SIZE_W;
+	p1->y = 10 * SIZE_H;
+
+	p2->x = 20 * SIZE_W;
+	p2->y = 30 * SIZE_H;
+	draw_line(*p1, *p2, e, 0xFF0000);
+*/
+
 	sleep(50);
 
 

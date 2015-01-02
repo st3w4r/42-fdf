@@ -46,7 +46,8 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 	// nb_points = 0;
 	while (array_str[i] != 0)
 		i++;
-	(*array_points) = (t_point**)malloc(sizeof(t_point) * i);
+	if (!((*array_points) = (t_point**)malloc(sizeof(t_point) * i)))
+		ft_exit();
 	i = 0;
 	while (array_str[i] != 0)
 	{
