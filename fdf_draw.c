@@ -260,7 +260,7 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 
 void draw_point(t_point point, t_env e, int color)
 {
-	mlx_pixel_put(e.mlx, e.win, (point.x + DEC_L), (point.y + DEC_T), color);
+	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
 }
 
 void draw(void *mlx, void *win)

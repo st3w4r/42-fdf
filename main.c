@@ -12,6 +12,13 @@
 
 #include "fdf.h"
 
+
+// int		expose_hook(t_env *e)
+// {
+// 	draw(e->mlx, e->win);
+// 	return (0);
+// }
+
 int		main(int argc, char **argv)
 {
 	// void *mlx;
@@ -31,11 +38,22 @@ int		main(int argc, char **argv)
 		ft_cal_rotation(map);
 		ft_cal_translation_x(map);
 		ft_cal_translation_y(map);
-		// ft_cal_translation_z(map);
 
-		ft_putnbr(map->len);
 		draw_windows("42", 1000, 1000, &e);
 		draw_map(*map, e, 0xFF0000);
+		// mlx_expose_hook(e.win, expose_hook, &e);
+		// mlx_key_hook(e.win, key_hook, &e);
+		mlx_hook(e.win, 2, 3, key_hook, &e);
+		// mlx_do_key_autorepeaton(e.mlx);
+		// int	mlx_hook(void *win_ptr, int x_event, int x_mask,
+		                //  int (*funct)(), void *param);
+
+		mlx_loop(e.mlx);
+		// ft_cal_translation_z(map);
+
+		// ft_putnbr(map->len);
+		// draw_windows("42", 1000, 1000, &e);
+		// draw_map(*map, e, 0xFF0000);
 	// map = (*t_map)malloc(sizeof(t_map));
 
 
@@ -58,7 +76,6 @@ int		main(int argc, char **argv)
 	draw_line(*p1, *p2, e, 0xFF0000);
 */
 
-		sleep(50);
 	}
 
 	return (0);

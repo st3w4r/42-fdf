@@ -27,6 +27,17 @@
 # define SIZE_W 20
 # define SIZE_H 20
 
+/**
+*	Key code
+*/
+# define KEY_ESC 65307
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_ZOOM_IN 65451
+# define KEY_ZOOM_OUT 65453
+
 typedef struct	s_env {
 	void *mlx;
 	void *win;
@@ -114,4 +125,9 @@ t_matrice	*ft_matrice_translation_x(double tran);
 t_matrice	*ft_matrice_translation_y(double tran);
 t_matrice	*ft_matrice_translation_z(double tran);
 
+/**
+*	Hook
+*	\file fdf_hook.c
+*/
+int			key_hook(int keycode, t_env *e);
 #endif
