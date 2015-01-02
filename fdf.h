@@ -22,10 +22,10 @@
 # include <math.h>
 
 // # define POS_N 0
-# define DEC_T 100
-# define DEC_L 100
-# define SIZE_W 20;
-# define SIZE_H 20;
+# define DEC_T 0
+# define DEC_L 0
+# define SIZE_W 20
+# define SIZE_H 20
 
 typedef struct	s_env {
 	void *mlx;
@@ -68,19 +68,50 @@ typedef struct	s_matrice {
 	double d4;
 }				t_matrice;
 
+/**
+*	Parse Map
+*	\file parse_arg.c
+*/
 t_map			*ft_parse_map(char **av);
 int				ft_points(char *line, int nb_line, t_point ***array_points);
 void			ft_parse_points (char *nb_str);
 int				ft_getnbr(char *str);
 int				ft_map_line(char *map);
 
+/**
+*	Draw Map
+*	\file fdf_draw.c
+*/
 void			draw(void *mlx, void *win);
 void			draw_map(t_map map, t_env e, int color);
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_point(t_point point, t_env e, int color);
 void			draw_line(t_point point1, t_point point2, t_env env, int color);
 
+/**
+*	Gestion Error
+*	\file fdf_error.c
+*/
 void			ft_exit();
 
+/**
+*	Calcul of matrice
+*	\file fdf_cal_matrice.c
+*/
+void		ft_cal_matrice(t_point *p, t_matrice *m);
+void		ft_cal_rotation(t_map *map);
+void		ft_cal_translation_x(t_map *map);
+void		ft_cal_translation_y(t_map *map);
+void		ft_cal_translation_z(t_map *map);
+void		ft_cal_matice_all_points(t_map *map, t_matrice *m);
+
+/**
+*	Mtarice init
+*	\file fdf_matrice.c
+*/
 t_matrice	*ft_matrice_rotation(double beta);
+t_matrice	*ft_matrice_translation_x(double tran);
+t_matrice	*ft_matrice_translation_y(double tran);
+t_matrice	*ft_matrice_translation_z(double tran);
+
 #endif

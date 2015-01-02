@@ -25,12 +25,17 @@ int		main(int argc, char **argv)
 
 	// map =
 	if (argc == 2)
+	{
 		map = ft_parse_map(argv);
 
-	ft_putnbr(map->len);
-	draw_windows("42", 1000, 1000, &e);
+		ft_cal_rotation(map);
+		ft_cal_translation_x(map);
+		ft_cal_translation_y(map);
+		// ft_cal_translation_z(map);
 
-	draw_map(*map, e, 0xFF0000);
+		ft_putnbr(map->len);
+		draw_windows("42", 1000, 1000, &e);
+		draw_map(*map, e, 0xFF0000);
 	// map = (*t_map)malloc(sizeof(t_map));
 
 
@@ -53,8 +58,8 @@ int		main(int argc, char **argv)
 	draw_line(*p1, *p2, e, 0xFF0000);
 */
 
-	sleep(50);
-
+		sleep(50);
+	}
 
 	return (0);
 }

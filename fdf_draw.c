@@ -258,53 +258,6 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 	}
 }
 
-	// ft_putnbr(point1.x);
-	// puts(" x");
-	// ft_putnbr(point1.y);
-	// puts(" y");
-/*
-void draw_line(t_point point1, t_point point2, t_env env, int color)
-{
-	if (point1.y == point2.y)
-	{
-		if (point1.x < point2.x)
-		{
-			while (point1.x < point2.x)
-			{
-				draw_point(point1, env, color);
-				point1.x++;
-			}
-		}
-		else
-		{
-			while (point1.x > point2.x)
-			{
-				draw_point(point1, env, color);
-				point1.x--;
-			}
-		}
-	}
-	else if (point1.x == point2.x)
-	{
-		if (point1.y < point2.y)
-		{
-			while (point1.y < point2.y)
-			{
-				draw_point(point1, env, color);
-				point1.y++;
-			}
-		}
-		else
-		{
-			while (point1.y > point2.y)
-			{
-				draw_point(point1, env, color);
-				point1.y--;
-			}
-		}
-	}
-}*/
-
 void draw_point(t_point point, t_env e, int color)
 {
 	mlx_pixel_put(e.mlx, e.win, (point.x + DEC_L), (point.y + DEC_T), color);
