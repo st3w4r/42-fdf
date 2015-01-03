@@ -12,7 +12,37 @@
 
 #include "fdf.h"
 
-t_matrice	*ft_matrice_rotation(double beta)
+t_matrice	*ft_matrice_rotation_x(double beta)
+{
+	t_matrice *m;
+
+	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
+		ft_exit();
+	m->a1 = 1;
+	m->b2 = cos(beta);
+	m->b3 = -sin(beta);
+	m->c2 = sin(beta);
+	m->c3 = cos(beta);
+	m->d4 = 1;
+	return (m);
+}
+
+t_matrice	*ft_matrice_rotation_y(double beta)
+{
+	t_matrice *m;
+
+	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
+		ft_exit();
+	m->a1 = cos(beta);
+	m->a3 = sin(beta);
+	m->c1 = -sin(beta);
+	m->c3 = cos(beta);
+	m->b2 = 1;
+	m->d4 = 1;
+	return (m);
+}
+
+t_matrice	*ft_matrice_rotation_z(double beta)
 {
 	t_matrice *m;
 
@@ -26,6 +56,9 @@ t_matrice	*ft_matrice_rotation(double beta)
 	m->d4 = 1;
 	return (m);
 }
+
+
+
 
 t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 {

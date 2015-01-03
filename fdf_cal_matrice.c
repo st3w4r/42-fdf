@@ -14,13 +14,20 @@
 
 void	ft_cal_matrice(t_point *p, t_matrice *m)
 {
+	double tmp_x;
+	double tmp_y;
+	double tmp_z;
+
 	// p->x = p->x - 200;
 	// p->y = p->y - 200;
 	// p->z = p->z + 300;
-	p->s = 1;
-	p->x =  p->x * m->a1 + p->y * m->a2 + p->z * m->a3 + p->s * m->a4;
-	p->y =  p->x * m->b1 + p->y * m->b2 + p->z * m->b3 + p->s * m->b4;
-	p->z =  p->x * m->c1 + p->y * m->c2 + p->z * m->c3 + p->s * m->c4;
+
+	tmp_x = p->x * m->a1 + p->y * m->a2 + p->z * m->a3 + p->s * m->a4;
+	tmp_y = p->x * m->b1 + p->y * m->b2 + p->z * m->b3 + p->s * m->b4;
+	tmp_z = p->x * m->c1 + p->y * m->c2 + p->z * m->c3 + p->s * m->c4;
+	p->z = tmp_z;
+	p->y = tmp_y;
+	p->x = tmp_x;
 
 	// ft_putnbr(p->x);
 	// ft_putchar(' ');
@@ -35,11 +42,29 @@ void	ft_cal_matrice(t_point *p, t_matrice *m)
 
 }
 
-void	ft_cal_rotation(t_map *map, double rot)
+void	ft_cal_rotation_x(t_map *map, double rot)
 {
 	t_matrice *m_rot;
 
-	m_rot = ft_matrice_rotation(rot);
+	m_rot = ft_matrice_rotation_x(rot);
+	ft_cal_matice_all_points(map, m_rot);
+	free(m_rot);
+}
+
+void	ft_cal_rotation_y(t_map *map, double rot)
+{
+	t_matrice *m_rot;
+
+	m_rot = ft_matrice_rotation_y(rot);
+	ft_cal_matice_all_points(map, m_rot);
+	free(m_rot);
+}
+
+void	ft_cal_rotation_z(t_map *map, double rot)
+{
+	t_matrice *m_rot;
+
+	m_rot = ft_matrice_rotation_z(rot);
 	ft_cal_matice_all_points(map, m_rot);
 	free(m_rot);
 }

@@ -19,7 +19,7 @@ void draw_windows(char *title, int weight, int height, t_env *e)
 	e->win = mlx_new_window(e->mlx, weight, height, title);
 }
 
-void draw_map(t_map map, t_env e, int color)
+void draw_map(t_map map, t_env e)
 {
 	int x;
 	int y;
@@ -30,15 +30,11 @@ void draw_map(t_map map, t_env e, int color)
 		x = 0;
 		while (x < (map.lines[y]->len))
 		{
-			if (map.lines[y]->points[x]->z > 1)
-				color = 0x00FF00;
-			else
-				color = 0xFF0000;
 			// draw_point((*map.lines[y]->points[x]), e, color);
 			if (map.lines[y]->points[x + 1])
-				draw_line((*map.lines[y]->points[x]), (*map.lines[y]->points[x + 1]), e, color);
+				draw_line((*map.lines[y]->points[x]), (*map.lines[y]->points[x + 1]), e, map.lines[y]->points[x]->color);
 			if (map.lines[y + 1])
-				draw_line((*map.lines[y]->points[x]), (*map.lines[y + 1]->points[x]), e, color);
+				draw_line((*map.lines[y]->points[x]), (*map.lines[y + 1]->points[x]), e,  map.lines[y]->points[x]->color);
 			x++;
 		}
 		y++;
@@ -266,7 +262,7 @@ void draw_point(t_point point, t_env e, int color)
 void draw_reload(t_map map, t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
-	draw_map(map, e, 0xFF0000);
+	draw_map(map, e);
 }
 
 void draw(void *mlx, void *win)

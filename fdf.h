@@ -27,10 +27,18 @@
 # define SIZE_W 20
 # define SIZE_H 20
 
-# define MOVE_ROT_LEFT 1
-# define MOVE_ROT_RIGHT -1
-# define MOVE_UP 1
-# define MOVE_DOWN -1
+# define MOVE_UP -10
+# define MOVE_DOWN 10
+# define MOVE_LEFT -10
+# define MOVE_RIGHT 10
+
+# define MOVE_ROT_X_U -0.1
+# define MOVE_ROT_X_D 0.1
+# define MOVE_ROT_Y_U -0.1
+# define MOVE_ROT_Y_D 0.1
+# define MOVE_ROT_Z_U -0.1
+# define MOVE_ROT_Z_D 0.1
+
 
 /**
 *	Key code
@@ -42,8 +50,13 @@
 # define KEY_RIGHT 65363
 # define KEY_ZOOM_IN 65451
 # define KEY_ZOOM_OUT 65453
-# define KEY_ROT_LEFT 65460
-# define KEY_ROT_RIGHT 65462
+
+# define KEY_ROT_X_U 65460
+# define KEY_ROT_X_D 65457
+# define KEY_ROT_Y_U 65461
+# define KEY_ROT_Y_D 65458
+# define KEY_ROT_Z_U 65462
+# define KEY_ROT_Z_D 65459
 
 typedef struct	s_env {
 	void *mlx;
@@ -55,6 +68,7 @@ typedef struct	s_point {
 	double	y;
 	double	z;
 	double	s;
+	int		color;
 }				t_point;
 
 typedef struct	s_line {
@@ -106,7 +120,7 @@ int				ft_map_line(char *map);
 *	\file fdf_draw.c
 */
 void			draw(void *mlx, void *win);
-void			draw_map(t_map map, t_env e, int color);
+void			draw_map(t_map map, t_env e);
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_point(t_point point, t_env e, int color);
 void			draw_line(t_point point1, t_point point2, t_env env, int color);
@@ -122,22 +136,28 @@ void			ft_exit();
 *	\file fdf_cal_matrice.c
 */
 void		ft_cal_matrice(t_point *p, t_matrice *m);
-void		ft_cal_rotation(t_map *map, double rot);
+void		ft_cal_rotation_x(t_map *map, double rot);
+void		ft_cal_rotation_y(t_map *map, double rot);
+void		ft_cal_rotation_z(t_map *map, double rot);
 void		ft_cal_translation(t_map *map, double x, double y, double z);
+/*
 void		ft_cal_translation_x(t_map *map);
 void		ft_cal_translation_y(t_map *map);
 void		ft_cal_translation_z(t_map *map);
+*/
 void		ft_cal_matice_all_points(t_map *map, t_matrice *m);
 
 /**
 *	Mtarice init
 *	\file fdf_matrice.c
 */
-t_matrice	*ft_matrice_rotation(double beta);
+t_matrice	*ft_matrice_rotation_x(double beta);
+t_matrice	*ft_matrice_rotation_y(double beta);
+t_matrice	*ft_matrice_rotation_z(double beta);
 t_matrice	*ft_matrice_translation(double tx, double ty, double tz);
-t_matrice	*ft_matrice_translation_x(double tran);
-t_matrice	*ft_matrice_translation_y(double tran);
-t_matrice	*ft_matrice_translation_z(double tran);
+// t_matrice	*ft_matrice_translation_x(double tran);
+// t_matrice	*ft_matrice_translation_y(double tran);
+// t_matrice	*ft_matrice_translation_z(double tran);
 
 /**
 *	Hook

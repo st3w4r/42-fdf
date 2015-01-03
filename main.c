@@ -15,7 +15,7 @@
 
 int		expose_hook(t_param *param)
 {
-	draw_map(*(param->map), *(param->e), 0xFF0000);
+	draw_map(*(param->map), *(param->e));
 	return (0);
 }
 
