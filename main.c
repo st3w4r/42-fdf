@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-
 int		expose_hook(t_param *param)
 {
 	draw_map(*(param->map), *(param->e));

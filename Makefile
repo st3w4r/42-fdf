@@ -26,7 +26,8 @@ SRC =	main.c \
 		fdf_cal_matrice.c \
 		fdf_matrice.c \
 		fdf_error.c \
-		fdf_hook.c
+		fdf_hook.c \
+		fdf_helper.c
 
 OBJ = $(patsubst %.c,%.o,$(addprefix $(PATH_SRC), $(SRC)))
 

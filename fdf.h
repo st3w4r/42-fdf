@@ -164,4 +164,11 @@ t_matrice	*ft_matrice_translation(double tx, double ty, double tz);
 *	\file fdf_hook.c
 */
 int			key_hook(int keycode, t_param *param);
+
+/**
+*	Function Helpers
+*	\file fdf_helper.c
+*/
+int			get_color(int z);
+
 #endif
