@@ -35,15 +35,25 @@ void	ft_cal_matrice(t_point *p, t_matrice *m)
 
 }
 
-void	ft_cal_rotation(t_map *map)
+void	ft_cal_rotation(t_map *map, double rot)
 {
 	t_matrice *m_rot;
 
-	m_rot = ft_matrice_rotation(0.5);
+	m_rot = ft_matrice_rotation(rot);
 	ft_cal_matice_all_points(map, m_rot);
 	free(m_rot);
 }
 
+void	ft_cal_translation(t_map *map, double x, double y, double z)
+{
+	t_matrice *m_tran;
+
+	m_tran = ft_matrice_translation(x, y, z);
+	ft_cal_matice_all_points(map, m_tran);
+	free(m_tran);
+}
+
+/*
 void	ft_cal_translation_x(t_map *map)
 {
 	t_matrice *m_tran;
@@ -70,7 +80,7 @@ void	ft_cal_translation_z(t_map *map)
 	ft_cal_matice_all_points(map, m_tran);
 	free(m_tran);
 }
-
+*/
 void	ft_cal_matice_all_points(t_map *map, t_matrice *m)
 {
 	int x;

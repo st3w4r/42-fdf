@@ -27,6 +27,22 @@ t_matrice	*ft_matrice_rotation(double beta)
 	return (m);
 }
 
+t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
+{
+	t_matrice *m;
+	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
+		ft_exit();
+	m->a4 = tx;
+	m->b4 = ty;
+	m->c4 = tz;
+	m->a1 = 1;
+	m->b2 = 1;
+	m->c3 = 1;
+	m->d4 = 1;
+	return (m);
+}
+
+/*
 t_matrice	*ft_matrice_translation_x(double tran)
 {
 	t_matrice *m;
@@ -65,3 +81,4 @@ t_matrice	*ft_matrice_translation_z(double tran)
 	m->d4 = 1;
 	return (m);
 }
+*/

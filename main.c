@@ -13,16 +13,17 @@
 #include "fdf.h"
 
 
-// int		expose_hook(t_env *e)
-// {
-// 	draw(e->mlx, e->win);
-// 	return (0);
-// }
+int		expose_hook(t_param *param)
+{
+	draw_map(*(param->map), *(param->e), 0xFF0000);
+	return (0);
+}
 
 int		main(int argc, char **argv)
 {
 	// void *mlx;
 	// void *win;
+	t_param *param;
 	t_env e;
 	t_map *map;
 
@@ -35,20 +36,24 @@ int		main(int argc, char **argv)
 	{
 		map = ft_parse_map(argv);
 
-		ft_cal_rotation(map);
-		ft_cal_translation_x(map);
-		ft_cal_translation_y(map);
+		// ft_cal_rotation(map, 0.5);
+		// ft_cal_translation_x(map);
+		// ft_cal_translation_y(map);
 
-		draw_windows("42", 1000, 1000, &e);
-		draw_map(*map, e, 0xFF0000);
-		// mlx_expose_hook(e.win, expose_hook, &e);
+		// draw_map(*map, e, 0xFF0000);
 		// mlx_key_hook(e.win, key_hook, &e);
-		mlx_hook(e.win, 2, 3, key_hook, &e);
+		if (!(param = (t_param *)malloc(sizeof(t_param))))
+			ft_exit();
+		param->map = map;
+		param->e = &e;
+		draw_windows("42", 1000, 1000, param->e);
+		mlx_expose_hook(e.win, expose_hook, param);
+		mlx_hook(e.win, 2, 3, key_hook, param);
+		mlx_loop(e.mlx);
+		free(param);
 		// mlx_do_key_autorepeaton(e.mlx);
 		// int	mlx_hook(void *win_ptr, int x_event, int x_mask,
-		                //  int (*funct)(), void *param);
-
-		mlx_loop(e.mlx);
+		//  int (*funct)(), void *param);
 		// ft_cal_translation_z(map);
 
 		// ft_putnbr(map->len);

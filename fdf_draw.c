@@ -263,6 +263,12 @@ void draw_point(t_point point, t_env e, int color)
 	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
 }
 
+void draw_reload(t_map map, t_env e)
+{
+	mlx_clear_window(e.mlx, e.win);
+	draw_map(map, e, 0xFF0000);
+}
+
 void draw(void *mlx, void *win)
 {
 	int x;
