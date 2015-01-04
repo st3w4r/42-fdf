@@ -72,6 +72,18 @@ t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 	return (m);
 }
 
+t_matrice	*ft_matrice_scale(double s)
+{
+	t_matrice *m;
+	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
+		ft_exit();
+	m->a1 = s;
+	m->b2 = s;
+	m->c3 = s;
+	m->d4 = 1;
+	return (m);
+}
+
 /*
 t_matrice	*ft_matrice_translation_x(double tran)
 {

@@ -32,6 +32,9 @@
 # define MOVE_LEFT -10
 # define MOVE_RIGHT 10
 
+# define MOVE_ZOOM_IN 1.1
+# define MOVE_ZOOM_OUT 0.9
+
 # define MOVE_ROT_X_U -0.1
 # define MOVE_ROT_X_D 0.1
 # define MOVE_ROT_Y_U -0.1
@@ -48,6 +51,7 @@
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+
 # define KEY_ZOOM_IN 65451
 # define KEY_ZOOM_OUT 65453
 
@@ -141,7 +145,9 @@ void		ft_cal_rotation_x(t_param *param, double rot);
 void		ft_cal_rotation_y(t_param *param, double rot);
 void		ft_cal_rotation_z(t_param *param, double rot);
 void		ft_cal_translation(t_param *param, double x, double y, double z);
+void		ft_cal_scale(t_param *param, double s);
 void		ft_cal_matrice_all_points(t_map *map, t_matrice *m, t_param *param);
+
 /*
 void		ft_cal_translation_x(t_map *map);
 void		ft_cal_translation_y(t_map *map);
@@ -157,6 +163,7 @@ t_matrice	*ft_matrice_rotation_x(double beta);
 t_matrice	*ft_matrice_rotation_y(double beta);
 t_matrice	*ft_matrice_rotation_z(double beta);
 t_matrice	*ft_matrice_translation(double tx, double ty, double tz);
+t_matrice	*ft_matrice_scale(double s);
 // t_matrice	*ft_matrice_translation_x(double tran);
 // t_matrice	*ft_matrice_translation_y(double tran);
 // t_matrice	*ft_matrice_translation_z(double tran);

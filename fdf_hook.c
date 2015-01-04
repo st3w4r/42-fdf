@@ -14,8 +14,6 @@
 
 int		key_hook(int keycode, t_param *param)
 {
-	ft_putnbr(keycode);
-	ft_putchar(' ');
 	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(param->e->mlx, param->e->win);
@@ -41,8 +39,10 @@ int		key_hook(int keycode, t_param *param)
 		ft_cal_translation(param, MOVE_LEFT, 0, 0);
 	else if (keycode == KEY_RIGHT)
 		ft_cal_translation(param, MOVE_RIGHT, 0, 0);
-
-
+	else if (keycode == KEY_ZOOM_IN)
+		ft_cal_scale(param, MOVE_ZOOM_IN);
+	else if (keycode == KEY_ZOOM_OUT)
+		ft_cal_scale(param, MOVE_ZOOM_OUT);
 	draw_reload(*(param->map), *(param->e));
 	return (0);
 }

@@ -17,14 +17,9 @@ void	ft_cal_matrice(t_point *p, t_matrice *m, t_param *param)
 	double tmp_x;
 	double tmp_y;
 	double tmp_z;
-	// t_point p_center;
-	//
-	// p_center = get_center(p, m);
 
 	p->x -= param->center.x;
 	p->y -= param->center.y;
-
-	// p->z = p->z - 200;
 
 	tmp_x = p->x * m->a1 + p->y * m->a2 + p->z * m->a3 + p->s * m->a4;
 	tmp_y = p->x * m->b1 + p->y * m->b2 + p->z * m->b3 + p->s * m->b4;
@@ -35,9 +30,6 @@ void	ft_cal_matrice(t_point *p, t_matrice *m, t_param *param)
 
 	p->x += param->center.x;
 	p->y += param->center.y;
-	// p->x = p->x + 200;
-	// p->y = p->y + 200;
-	// p->z = p->z + 200;
 
 	// ft_putnbr(p->x);
 	// ft_putchar(' ');
@@ -89,34 +81,15 @@ void	ft_cal_translation(t_param *param, double x, double y, double z)
 	free(m_tran);
 }
 
-/*
-void	ft_cal_translation_x(t_map *map)
+void	ft_cal_scale(t_param *param, double s)
 {
 	t_matrice *m_tran;
 
-	m_tran = ft_matrice_translation_x(300);
-	ft_cal_matrice_all_points(map, m_tran);
+	m_tran = ft_matrice_scale(s);
+	ft_cal_matrice_all_points(param->map, m_tran, param);
 	free(m_tran);
 }
 
-void	ft_cal_translation_y(t_map *map)
-{
-	t_matrice *m_tran;
-
-	m_tran = ft_matrice_translation_y(300);
-	ft_cal_matrice_all_points(map, m_tran);
-	free(m_tran);
-}
-
-void	ft_cal_translation_z(t_map *map)
-{
-	t_matrice *m_tran;
-
-	m_tran = ft_matrice_translation_z(10);
-	ft_cal_matrice_all_points(map, m_tran);
-	free(m_tran);
-}
-*/
 void	ft_cal_matrice_all_points(t_map *map, t_matrice *m, t_param *param)
 {
 	int x;
