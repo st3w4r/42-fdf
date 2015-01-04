@@ -57,9 +57,6 @@ t_matrice	*ft_matrice_rotation_z(double beta)
 	return (m);
 }
 
-
-
-
 t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 {
 	t_matrice *m;

@@ -6,7 +6,7 @@
 /*   By: ybarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/09 15:00:21 by ybarbier          #+#    #+#             */
-/*   Updated: 2014/12/09 15:00:24 by ybarbier         ###   ########.fr       */
+/*   Updated: 2015/01/04 00:06:29 by ybarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct	s_matrice {
 typedef struct	s_param {
 	t_map *map;
 	t_env *e;
+	t_point center;
 }				t_param;
 
 /**
@@ -135,17 +136,18 @@ void			ft_exit();
 *	Calcul of matrice
 *	\file fdf_cal_matrice.c
 */
-void		ft_cal_matrice(t_point *p, t_matrice *m);
-void		ft_cal_rotation_x(t_map *map, double rot);
-void		ft_cal_rotation_y(t_map *map, double rot);
-void		ft_cal_rotation_z(t_map *map, double rot);
-void		ft_cal_translation(t_map *map, double x, double y, double z);
+void		ft_cal_matrice(t_point *p, t_matrice *m, t_param *param);
+void		ft_cal_rotation_x(t_param *param, double rot);
+void		ft_cal_rotation_y(t_param *param, double rot);
+void		ft_cal_rotation_z(t_param *param, double rot);
+void		ft_cal_translation(t_param *param, double x, double y, double z);
+void		ft_cal_matrice_all_points(t_map *map, t_matrice *m, t_param *param);
 /*
 void		ft_cal_translation_x(t_map *map);
 void		ft_cal_translation_y(t_map *map);
 void		ft_cal_translation_z(t_map *map);
 */
-void		ft_cal_matice_all_points(t_map *map, t_matrice *m);
+// void		ft_cal_matrice(t_point *p, t_matrice *m, t_param *param);
 
 /**
 *	Mtarice init
@@ -170,5 +172,6 @@ int			key_hook(int keycode, t_param *param);
 *	\file fdf_helper.c
 */
 int			get_color(int z);
+void		get_center(t_param *param, t_map *m);
 
 #endif

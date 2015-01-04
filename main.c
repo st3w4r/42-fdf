@@ -43,6 +43,7 @@ int		main(int argc, char **argv)
 		// mlx_key_hook(e.win, key_hook, &e);
 		if (!(param = (t_param *)malloc(sizeof(t_param))))
 			ft_exit();
+		get_center(param, map);
 		param->map = map;
 		param->e = &e;
 		draw_windows("42", 1000, 1000, param->e);
