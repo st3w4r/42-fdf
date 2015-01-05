@@ -74,7 +74,8 @@ SRC = 	$(PATH_SRC)ft_strlen.c \
 	  	$(PATH_SRC)ft_lstdel.c \
 	  	$(PATH_SRC)ft_lstadd.c \
 	  	$(PATH_SRC)ft_lstiter.c \
-	  	$(PATH_SRC)ft_lstmap.c
+	  	$(PATH_SRC)ft_lstmap.c \
+		$(PATH_SRC)get_next_line.c
 
 OBJ = $(patsubst %.c,%.o,$(SRC))
 
@@ -84,7 +85,7 @@ $(NAME): $(OBJ)
 #	$(CC) -Wall -Wextra -Werror -c $(SRC)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-	
+
 clean:
 	/bin/rm -f $(OBJ)
 

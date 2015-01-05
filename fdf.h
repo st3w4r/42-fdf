@@ -13,7 +13,7 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include "get_next_line.h"
+// # include "get_next_line.h"
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <math.h>
 
+# include "libft/includes/libft.h"
 // # define POS_N 0
 # define DEC_T 0
 # define DEC_L 0
