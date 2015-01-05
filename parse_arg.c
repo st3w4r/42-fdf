@@ -12,7 +12,6 @@
 
 #include "fdf.h"
 
-
 int		ft_getnbr(char *str)
 {
 	int nbr;
@@ -24,26 +23,17 @@ int		ft_getnbr(char *str)
 	nbr = 0;
 	while ((*str >= '0') && (*str <= '9'))
 		nbr = (nbr * 10) + *str++ - '0';
-	return ((neg == 1)? -nbr : nbr);
+	return ((neg == 1) ? -nbr : nbr);
 }
-
-// void	ft_parse_points (char *nb_str)
-// {
-//
-// }
 
 int		ft_points(char *line, int nb_line, t_point ***array_points)
 {
-	char **array_str;
-	// t_point **array_points;
-	t_point *a_point;
-
-	int i;
-	// int nb_points;
+	char	**array_str;
+	t_point	*a_point;
+	int		i;
 
 	array_str = ft_strsplit(line, ' ');
 	i = 0;
-	// nb_points = 0;
 	while (array_str[i] != 0)
 		i++;
 	if (!((*array_points) = (t_point**)malloc(sizeof(t_point) * i)))
@@ -57,9 +47,6 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 		a_point->z = ft_getnbr(array_str[i]);
 		a_point->s = 1;
 		a_point->color = get_color(a_point->z);
-
-		// printf("x: %d y: %d z: %d", a_point->x, a_point->y, a_point->z);
-		// puts("");
 		(*array_points)[i] = a_point;
 		i++;
 	}
@@ -68,9 +55,9 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 
 int		ft_map_line(char *map)
 {
-	int fd;
-	int nb_lines;
-	char *buf;
+	int		fd;
+	int		nb_lines;
+	char	*buf;
 
 	fd = 0;
 	nb_lines = 0;
@@ -87,56 +74,29 @@ int		ft_map_line(char *map)
 	return (nb_lines);
 }
 
-t_map	*ft_parse_map(char **av)
+t_map	*ft_parse_map(char **av, int fd)
 {
 	char	*line;
-	int		fd;
-	int		val;
 	int		nb_line;
 	t_map	*map;
 	t_line	*line_map;
-	t_point **array_points;
-	// int		i;
-	// int		j;
+	t_point	**array_points;
 
-	fd = 0;
 	nb_line = 0;
 	map = (t_map*)malloc(sizeof(t_map));
 	map->lines = (t_line**)malloc(sizeof(t_line) * ft_map_line(av[1]));
 	map->len = 0;
 	if ((fd = open(av[1], O_RDONLY)) > 0)
 	{
-		while ((val = get_next_line(fd, &line)) > 0)
+		while ((get_next_line(fd, &line)) > 0)
 		{
 			line_map = (t_line*)malloc(sizeof(t_line));
-			// line_map->nb = nb_line;
 			line_map->len = ft_points(line, nb_line, &array_points);
 			line_map->points = array_points;
 			map->lines[nb_line] = line_map;
-
-			// puts(line);
-			// puts("Nb Points");
-			// puts("");
 			nb_line++;
 		}
 		map->len = nb_line;
 	}
-/*
-	i = 0;
-	while (i < map->len)
-	{
-		j = 0;
-		ft_putnbr(map->lines[i]->len);
-		while (j < map->lines[i]->len)
-		{
-			// ft_putnbr(map->lines[i]->points[j]->x);
-			printf("x: %d y: %d z: %d", map->lines[i]->points[j]->x, map->lines[i]->points[j]->y, map->lines[i]->points[j]->z);
-			puts(" ");
-			// map->lines[i]->points[j]->x
-			j++;
-		}
-		puts(" ");
-		i++;
-	}*/
 	return (map);
 }

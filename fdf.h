@@ -13,7 +13,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-// # include "get_next_line.h"
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,12 +21,15 @@
 # include <math.h>
 
 # include "libft/includes/libft.h"
-// # define POS_N 0
+
 # define DEC_T 0
 # define DEC_L 0
 # define SIZE_W 20
 # define SIZE_H 20
 
+/*
+**	Move pixel
+*/
 # define MOVE_UP -10
 # define MOVE_DOWN 10
 # define MOVE_LEFT -10
@@ -43,9 +45,8 @@
 # define MOVE_ROT_Z_U -0.1
 # define MOVE_ROT_Z_D 0.1
 
-
-/**
-*	Key code
+/*
+**	Key code
 */
 # define KEY_ESC 65307
 # define KEY_UP 65362
@@ -82,7 +83,7 @@ typedef struct	s_line {
 }				t_line;
 
 typedef struct	s_map {
-	t_line **lines;
+	t_line	**lines;
 	int		len;
 }				t_map;
 
@@ -106,80 +107,67 @@ typedef struct	s_matrice {
 }				t_matrice;
 
 typedef struct	s_param {
-	t_map *map;
-	t_env *e;
-	t_point center;
+	t_map	*map;
+	t_env	*e;
+	t_point	center;
 }				t_param;
 
-/**
-*	Parse Map
-*	\file parse_arg.c
+/*
+**	Parse Map
+**	\file parse_arg.c
 */
-t_map			*ft_parse_map(char **av);
+t_map			*ft_parse_map(char **av, int fd);
 int				ft_points(char *line, int nb_line, t_point ***array_points);
 void			ft_parse_points (char *nb_str);
 int				ft_getnbr(char *str);
 int				ft_map_line(char *map);
 
-/**
-*	Draw Map
-*	\file fdf_draw.c
+/*
+**	Draw Map
+**	\file fdf_draw.c
 */
-void			draw(void *mlx, void *win);
 void			draw_map(t_map map, t_env e);
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_point(t_point point, t_env e, int color);
 void			draw_line(t_point point1, t_point point2, t_env env, int color);
 void			draw_reload(t_map map, t_env e);
-/**
-*	Gestion Error
-*	\file fdf_error.c
+/*
+**	Gestion Error
+**	\file fdf_error.c
 */
-void			ft_exit();
-
-/**
-*	Calcul of matrice
-*	\file fdf_cal_matrice.c
-*/
-void		ft_cal_matrice(t_point *p, t_matrice *m, t_param *param);
-void		ft_cal_rotation_x(t_param *param, double rot);
-void		ft_cal_rotation_y(t_param *param, double rot);
-void		ft_cal_rotation_z(t_param *param, double rot);
-void		ft_cal_translation(t_param *param, double x, double y, double z);
-void		ft_cal_scale(t_param *param, double s);
-void		ft_cal_matrice_all_points(t_map *map, t_matrice *m, t_param *param);
+void			ft_exit(void);
 
 /*
-void		ft_cal_translation_x(t_map *map);
-void		ft_cal_translation_y(t_map *map);
-void		ft_cal_translation_z(t_map *map);
+**	Calcul of matrice
+**	\file fdf_cal_matrice.c
 */
-// void		ft_cal_matrice(t_point *p, t_matrice *m, t_param *param);
+void			ft_cal_rotation_x(t_param *param, double rot);
+void			ft_cal_rotation_y(t_param *param, double rot);
+void			ft_cal_rotation_z(t_param *param, double rot);
+void			ft_cal_translat(t_param *param, double x, double y, double z);
+void			ft_cal_scale(t_param *param, double s);
 
-/**
-*	Mtarice init
-*	\file fdf_matrice.c
+/*
+**	Mtarice init
+**	\file fdf_matrice.c
 */
-t_matrice	*ft_matrice_rotation_x(double beta);
-t_matrice	*ft_matrice_rotation_y(double beta);
-t_matrice	*ft_matrice_rotation_z(double beta);
-t_matrice	*ft_matrice_translation(double tx, double ty, double tz);
-t_matrice	*ft_matrice_scale(double s);
-// t_matrice	*ft_matrice_translation_x(double tran);
-// t_matrice	*ft_matrice_translation_y(double tran);
-// t_matrice	*ft_matrice_translation_z(double tran);
+t_matrice		*ft_matrice_rotation_x(double beta);
+t_matrice		*ft_matrice_rotation_y(double beta);
+t_matrice		*ft_matrice_rotation_z(double beta);
+t_matrice		*ft_matrice_translation(double tx, double ty, double tz);
+t_matrice		*ft_matrice_scale(double s);
 
-/**
-*	Hook
-*	\file fdf_hook.c
+/*
+**	Hook
+**	\file fdf_hook.c
 */
-int			key_hook(int keycode, t_param *param);
+int				key_hook(int keycode, t_param *param);
 
-/**
-*	Function Helpers
-*	\file fdf_helper.c
+/*
+**	Function Helpers
+**	\file fdf_helper.c
 */
-int			get_color(int z);
-void		get_center(t_param *param, t_map *m);
+int				get_color(int z);
+void			get_center(t_param *param, t_map *m);
 
 #endif

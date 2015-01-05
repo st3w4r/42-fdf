@@ -13,6 +13,7 @@
 NAME = fdf
 PATH_SRC = ./
 PATH_OBJ = ./
+PATH_INC = ./libft/includes/
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -35,8 +36,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(HEAD)
 	make -C libft/
-	$(CC) $(CFLAGS) -I libft/includes/ -c $(SRC)
-	$(CC) -o $(NAME) $(OBJ) -L libft/ -lft -L/usr/X11/lib -lmlx -lXext -lX11 -g
+	$(CC) $(CFLAGS) -I $(PATH_INC) -c $(SRC)
+	$(CC) -o $(NAME) $(OBJ) -L libft/ -lft -L/usr/X11/lib -lmlx -lXext -lX11
 
 
 .PHONY: clean fclean

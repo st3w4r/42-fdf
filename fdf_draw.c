@@ -12,17 +12,18 @@
 
 #include "fdf.h"
 
-
-void draw_windows(char *title, int weight, int height, t_env *e)
+void	draw_windows(char *title, int weight, int height, t_env *e)
 {
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, weight, height, title);
 }
 
-void draw_map(t_map map, t_env e)
+void	draw_map(t_map map, t_env e)
 {
-	int x;
-	int y;
+	int			x;
+	int			y;
+	t_point		p1;
+	int			p_color;
 
 	y = 0;
 	while (y < map.len)
@@ -30,18 +31,19 @@ void draw_map(t_map map, t_env e)
 		x = 0;
 		while (x < (map.lines[y]->len))
 		{
-			// draw_point((*map.lines[y]->points[x]), e, color);
+			p1 = (*map.lines[y]->points[x]);
+			p_color = map.lines[y]->points[x]->color;
 			if (map.lines[y]->points[x + 1])
-				draw_line((*map.lines[y]->points[x]), (*map.lines[y]->points[x + 1]), e, map.lines[y]->points[x]->color);
+				draw_line(p1, (*map.lines[y]->points[x + 1]), e, p_color);
 			if (map.lines[y + 1])
-				draw_line((*map.lines[y]->points[x]), (*map.lines[y + 1]->points[x]), e,  map.lines[y]->points[x]->color);
+				draw_line(p1, (*map.lines[y + 1]->points[x]), e, p_color);
 			x++;
 		}
 		y++;
 	}
 }
 
-void draw_line(t_point point1, t_point point2, t_env env, int color)
+void	draw_line(t_point point1, t_point point2, t_env env, int color)
 {
 	int dx;
 	int dy;
@@ -254,32 +256,13 @@ void draw_line(t_point point1, t_point point2, t_env env, int color)
 	}
 }
 
-void draw_point(t_point point, t_env e, int color)
+void	draw_point(t_point point, t_env e, int color)
 {
 	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
 }
 
-void draw_reload(t_map map, t_env e)
+void	draw_reload(t_map map, t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
 	draw_map(map, e);
-}
-
-void draw(void *mlx, void *win)
-{
-	int x;
-	int y;
-
-	x = 50;
-	while (x < 200)
-	{
-		y = 50;
-		while (y < 200)
-		{
-			mlx_pixel_put(mlx, win, y, x, 0xFF0000);
-			// usleep(500);
-			y++;
-		}
-		x++;
-	}
 }

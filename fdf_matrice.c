@@ -60,6 +60,7 @@ t_matrice	*ft_matrice_rotation_z(double beta)
 t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 {
 	t_matrice *m;
+
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
 		ft_exit();
 	m->a4 = tx;
@@ -75,6 +76,7 @@ t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 t_matrice	*ft_matrice_scale(double s)
 {
 	t_matrice *m;
+
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
 		ft_exit();
 	m->a1 = s;
@@ -83,44 +85,3 @@ t_matrice	*ft_matrice_scale(double s)
 	m->d4 = 1;
 	return (m);
 }
-
-/*
-t_matrice	*ft_matrice_translation_x(double tran)
-{
-	t_matrice *m;
-	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
-	m->a4 = tran;
-	m->a1 = 1;
-	m->b2 = 1;
-	m->c3 = 1;
-	m->d4 = 1;
-	return (m);
-}
-
-t_matrice	*ft_matrice_translation_y(double tran)
-{
-	t_matrice *m;
-	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
-	m->b4 = tran;
-	m->a1 = 1;
-	m->b2 = 1;
-	m->c3 = 1;
-	m->d4 = 1;
-	return (m);
-}
-
-t_matrice	*ft_matrice_translation_z(double tran)
-{
-	t_matrice *m;
-	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
-	m->c4 = tran;
-	m->a1 = 1;
-	m->b2 = 1;
-	m->c3 = 1;
-	m->d4 = 1;
-	return (m);
-}
-*/

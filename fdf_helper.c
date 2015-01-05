@@ -21,7 +21,6 @@ int		get_color(int z)
 	array_color[2] = 0x00FF00;
 	array_color[3] = 0x7F5B13;
 	array_color[4] = 0xFFFFFF;
-
 	if (z < 0)
 		return (array_color[0]);
 	else if (z >= 0 && z < 1)
@@ -36,16 +35,16 @@ int		get_color(int z)
 		return (0);
 }
 
-void get_center(t_param *param, t_map *m)
+void	get_center(t_param *param, t_map *m)
 {
-	t_point p_c;
-	int y_len;
-	int x_len;
+	t_point	p;
+	int		yl;
+	int		xl;
 
-	p_c = param->center;
-	y_len = m->len;
-	x_len = m->lines[0]->len;
-	p_c.x = (m->lines[y_len - 1]->points[x_len -1]->x + m->lines[0]->points[0]->x) / 2;
-	p_c.y = (m->lines[y_len - 1]->points[x_len -1]->y + m->lines[0]->points[0]->y) / 2;
-	param->center = p_c;
+	p = param->center;
+	yl = m->len;
+	xl = m->lines[0]->len;
+	p.x = (m->lines[yl - 1]->points[xl - 1]->x + m->lines[0]->points[0]->x) / 2;
+	p.y = (m->lines[yl - 1]->points[xl - 1]->y + m->lines[0]->points[0]->y) / 2;
+	param->center = p;
 }

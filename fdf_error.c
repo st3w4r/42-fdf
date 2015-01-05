@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void ft_exit()
+void	ft_exit(void)
 {
 	exit(1);
 }
