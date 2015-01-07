@@ -12,13 +12,13 @@
 
 #include "fdf.h"
 
-void	draw_windows(char *title, int weight, int height, t_env *e)
+void		draw_windows(char *title, int weight, int height, t_env *e)
 {
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, weight, height, title);
 }
 
-void	draw_map(t_map map, t_env e)
+void		draw_map(t_map map, t_env e)
 {
 	int			x;
 	int			y;
@@ -43,7 +43,7 @@ void	draw_map(t_map map, t_env e)
 	}
 }
 
-void	draw_line_params(t_point *point1, t_point *point2, double *tab)
+static void	draw_line_params(t_point *point1, t_point *point2, double *tab)
 {
 	tab[0] = fabs(point1->x - point2->x);
 	tab[1] = point1->x < point2->x ? 1 : -1;
@@ -52,7 +52,7 @@ void	draw_line_params(t_point *point1, t_point *point2, double *tab)
 	tab[4] = (tab[0] > tab[2] ? tab[0] : -tab[2]) * 0.5;
 }
 
-void	draw_line(t_point point1, t_point point2, t_env env, int color)
+void		draw_line(t_point point1, t_point point2, t_env env, int color)
 {
 	double	tab[6];
 	int		state;
@@ -80,12 +80,12 @@ void	draw_line(t_point point1, t_point point2, t_env env, int color)
 	}
 }
 
-void	draw_point(t_point point, t_env e, int color)
+void		draw_point(t_point point, t_env e, int color)
 {
 	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
 }
 
-void	draw_reload(t_map map, t_env e)
+void		draw_reload(t_map map, t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
 	draw_map(map, e);
