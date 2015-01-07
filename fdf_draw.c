@@ -43,215 +43,39 @@ void	draw_map(t_map map, t_env e)
 	}
 }
 
+void	draw_line_params(t_point *point1, t_point *point2, double *tab)
+{
+	tab[0] = fabs(point1->x - point2->x);
+	tab[1] = point1->x < point2->x ? 1 : -1;
+	tab[2] = fabs(point1->y - point2->y);
+	tab[3] = point1->y < point2->y ? 1 : -1;
+	tab[4] = (tab[0] > tab[2] ? tab[0] : -tab[2]) * 0.5;
+}
+
 void	draw_line(t_point point1, t_point point2, t_env env, int color)
 {
-	int dx;
-	int dy;
-	int e;
+	double	tab[6];
+	int		state;
 
-	dx = point2.x - point1.x;
-	if (dx != 0)
+	draw_line_params(&point1, &point2, tab);
+	state = 1;
+	while (state == 1 &&
+		!((int)point1.x == (int)point2.x && (int)point1.y == (int)point2.y))
 	{
-		if (dx > 0)
+		draw_point(point1, env, color);
+		tab[5] = tab[4];
+		state = 0;
+		if (tab[5] > -tab[0] && (int)point1.x != (int)point2.x)
 		{
-			dy = point2.y - point1.y;
-			if (dy != 0)
-			{
-				if (dy > 0)
-				{
-					if (dx >= dy)
-					{
-						e = dx;
-						dx *= 2;
-						dy *= 2;
-						while (point1.x < point2.x)
-						{
-							draw_point(point1, env, color);
-							e -= dy;
-							if (e < 0)
-							{
-								point1.y++;
-								e += dx;
-							}
-							point1.x++;
-						}
-					}
-					else
-					{
-						e = dy;
-						dy *= 2;
-						dx *= 2;
-						while (point1.y < point2.y)
-						{
-							draw_point(point1, env, color);
-							e -= dx;
-							if (e < 0)
-							{
-								point1.x++;
-								e += dy;
-							}
-							point1.y++;
-						}
-					}
-				}
-				else
-				{
-					if (dx >= -dy)
-					{
-						e = dx;
-						dx *= 2;
-						dy *= 2;
-						while (point1.x < point2.x)
-						{
-							draw_point(point1, env, color);
-							e += dy;
-							if (e < 0)
-							{
-								point1.y--;
-								e += dx;
-							}
-							point1.x++;
-						}
-					}
-					else
-					{
-						e = dy;
-						dy *= 2;
-						dx *= 2;
-						while (point1.y > point2.y)
-						{
-							draw_point(point1, env, color);
-							e += dx;
-							if (e > 0)
-							{
-								point1.x++;
-								e += dy;
-							}
-							point1.y--;
-						}
-					}
-				}
-			}
-			else
-			{
-				while (point1.x < point2.x)
-				{
-					draw_point(point1, env, color);
-					point1.x++;
-				}
-			}
+			tab[4] -= tab[2];
+			point1.x += tab[1];
+			state = 1;
 		}
-		else
+		if (tab[5] < tab[2] && (int)point1.y != (int)point2.y)
 		{
-			dy = point2.y - point1.y;
-			if (dy != 0)
-			{
-				if (dy > 0)
-				{
-					if (-dx >= dy)
-					{
-						e = dx;
-						dx *= 2;
-						dy *= 2;
-						while (point1.x > point2.x)
-						{
-							draw_point(point1, env, color);
-							e += dy;
-							if (e >= 0)
-							{
-								point1.y++;
-								e += dx;
-							}
-							point1.x--;
-						}
-					}
-					else
-					{
-						e = dy;
-						dy *= 2;
-						dx *= 2;
-						while (point1.y < point2.y)
-						{
-							draw_point(point1, env, color);
-							e += dx;
-							if (e <= 0)
-							{
-								point1.x--;
-								e += dy;
-							}
-							point1.y++;
-						}
-					}
-				}
-				else
-				{
-					if (dx <= dy)
-					{
-						e = dx;
-						dx *= 2;
-						dy *= 2;
-						while (point1.x > point2.x)
-						{
-							draw_point(point1, env, color);
-							e -= dy;
-							if (e >= 0)
-							{
-								point1.y--;
-								e += dx;
-							}
-							point1.x--;
-						}
-					}
-					else
-					{
-						e = dy;
-						dy *= 2;
-						dx *= 2;
-						while (point1.y > point2.y)
-						{
-							draw_point(point1, env, color);
-							e -= dx;
-							if (e >= 0)
-							{
-								point1.x--;
-								e += dy;
-							}
-							point1.y--;
-						}
-					}
-				}
-			}
-			else
-			{
-				while (point1.x > point2.x)
-				{
-					draw_point(point1, env, color);
-					point1.x--;
-				}
-			}
-		}
-	}
-	else
-	{
-		dy = point2.y - point1.y;
-		if (dy != 0)
-		{
-			if (dy > 0)
-			{
-				while (point1.y < point2.y)
-				{
-					draw_point(point1, env, color);
-					point1.y++;
-				}
-			}
-			else
-			{
-				while (point1.y > point2.y)
-				{
-					draw_point(point1, env, color);
-					point1.y--;
-				}
-			}
+			tab[4] += tab[0];
+			point1.y += tab[3];
+			state = 1;
 		}
 	}
 }
