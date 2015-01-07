@@ -48,29 +48,16 @@ static void	ft_cal_matrice_all_points(t_map *map, t_matrice *m, t_param *param)
 	}
 }
 
-void		ft_cal_rotation_x(t_param *param, double rot)
+void		ft_cal_rotation(t_param *param, double rot, char axe)
 {
 	t_matrice *m_rot;
 
-	m_rot = ft_matrice_rotation_x(rot);
-	ft_cal_matrice_all_points(param->map, m_rot, param);
-	free(m_rot);
-}
-
-void		ft_cal_rotation_y(t_param *param, double rot)
-{
-	t_matrice *m_rot;
-
-	m_rot = ft_matrice_rotation_y(rot);
-	ft_cal_matrice_all_points(param->map, m_rot, param);
-	free(m_rot);
-}
-
-void		ft_cal_rotation_z(t_param *param, double rot)
-{
-	t_matrice *m_rot;
-
-	m_rot = ft_matrice_rotation_z(rot);
+	if (axe == 'x')
+		m_rot = ft_matrice_rotation_x(rot);
+	else if (axe == 'y')
+		m_rot = ft_matrice_rotation_y(rot);
+	else
+		m_rot = ft_matrice_rotation_z(rot);
 	ft_cal_matrice_all_points(param->map, m_rot, param);
 	free(m_rot);
 }

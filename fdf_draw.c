@@ -52,6 +52,11 @@ static void	draw_line_params(t_point *point1, t_point *point2, double *tab)
 	tab[4] = (tab[0] > tab[2] ? tab[0] : -tab[2]) * 0.5;
 }
 
+static void	draw_point(t_point point, t_env e, int color)
+{
+	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
+}
+
 void		draw_line(t_point point1, t_point point2, t_env env, int color)
 {
 	double	tab[6];
@@ -78,15 +83,4 @@ void		draw_line(t_point point1, t_point point2, t_env env, int color)
 			state = 1;
 		}
 	}
-}
-
-void		draw_point(t_point point, t_env e, int color)
-{
-	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
-}
-
-void		draw_reload(t_map map, t_env e)
-{
-	mlx_clear_window(e.mlx, e.win);
-	draw_map(map, e);
 }

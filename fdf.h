@@ -126,11 +126,10 @@ int				ft_map_line(char *map);
 **	Draw Map
 **	\file fdf_draw.c
 */
-void			draw_map(t_map map, t_env e);
 void			draw_windows(char *title, int weight, int height, t_env *e);
-void			draw_point(t_point point, t_env e, int color);
+void			draw_map(t_map map, t_env e);
 void			draw_line(t_point point1, t_point point2, t_env env, int color);
-void			draw_reload(t_map map, t_env e);
+
 /*
 **	Gestion Error
 **	\file fdf_error.c
@@ -141,9 +140,8 @@ void			ft_exit(void);
 **	Calcul of matrice
 **	\file fdf_cal_matrice.c
 */
-void			ft_cal_rotation_x(t_param *param, double rot);
-void			ft_cal_rotation_y(t_param *param, double rot);
-void			ft_cal_rotation_z(t_param *param, double rot);
+
+void			ft_cal_rotation(t_param *param, double rot, char axe);
 void			ft_cal_translat(t_param *param, double x, double y, double z);
 void			ft_cal_scale(t_param *param, double s);
 
@@ -169,5 +167,6 @@ int				key_hook(int keycode, t_param *param);
 */
 int				get_color(int z);
 void			get_center(t_param *param, t_map *m);
+void			draw_reload(t_map map, t_env e);
 
 #endif

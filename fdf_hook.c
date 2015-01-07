@@ -15,17 +15,17 @@
 static	void	key_hook_rotation(int keycode, t_param *param)
 {
 	if (keycode == KEY_ROT_X_U)
-		ft_cal_rotation_x(param, MOVE_ROT_X_U);
+		ft_cal_rotation(param, MOVE_ROT_X_U, 'x');
 	else if (keycode == KEY_ROT_X_D)
-		ft_cal_rotation_x(param, MOVE_ROT_X_D);
+		ft_cal_rotation(param, MOVE_ROT_X_D, 'x');
 	else if (keycode == KEY_ROT_Y_U)
-		ft_cal_rotation_y(param, MOVE_ROT_Y_U);
+		ft_cal_rotation(param, MOVE_ROT_Y_U, 'y');
 	else if (keycode == KEY_ROT_Y_D)
-		ft_cal_rotation_y(param, MOVE_ROT_Y_D);
+		ft_cal_rotation(param, MOVE_ROT_Y_D, 'y');
 	else if (keycode == KEY_ROT_Z_U)
-		ft_cal_rotation_z(param, MOVE_ROT_Z_U);
+		ft_cal_rotation(param, MOVE_ROT_Z_U, 'z');
 	else if (keycode == KEY_ROT_Z_D)
-		ft_cal_rotation_z(param, MOVE_ROT_Z_D);
+		ft_cal_rotation(param, MOVE_ROT_Z_D, 'z');
 }
 
 static	void	key_hook_translation(int keycode, t_param *param)

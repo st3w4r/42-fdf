@@ -23,14 +23,14 @@ int		get_color(int z)
 	array_color[4] = 0xFFFFFF;
 	if (z < 0)
 		return (array_color[0]);
-	else if (z >= 0 && z < 1)
+	else if (z >= 0 && z < 10)
+		return (array_color[1]);
+	else if (z >= 10 && z < 20)
 		return (array_color[2]);
-	else if (z >= 1 && z < 2)
-		return (array_color[2]);
-	else if (z >= 2 && z < 3)
+	else if (z >= 20 && z < 30)
 		return (array_color[3]);
-	else if (z >= 3)
-		return (array_color[3]);
+	else if (z >= 30)
+		return (array_color[4]);
 	else
 		return (0);
 }
@@ -47,4 +47,10 @@ void	get_center(t_param *param, t_map *m)
 	p.x = (m->lines[yl - 1]->points[xl - 1]->x + m->lines[0]->points[0]->x) / 2;
 	p.y = (m->lines[yl - 1]->points[xl - 1]->y + m->lines[0]->points[0]->y) / 2;
 	param->center = p;
+}
+
+void	draw_reload(t_map map, t_env e)
+{
+	mlx_clear_window(e.mlx, e.win);
+	draw_map(map, e);
 }
