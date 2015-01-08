@@ -27,6 +27,8 @@
 # define SIZE_W 20
 # define SIZE_H 20
 
+# define WINDOW_SIZE_H 1000
+# define WINDOW_SIZE_W 1000
 /*
 **	Move pixel
 */
@@ -88,6 +90,11 @@ typedef struct	s_env {
 	void	*win;
 	t_map	*map;
 	t_point	center;
+	void	*img;
+	char	*pixel_img;
+	int		bpp;
+	int		s_line;
+	int		endian;
 }				t_env;
 
 typedef struct	s_matrice {
@@ -171,5 +178,6 @@ int				key_hook(int keycode, t_env *e);
 int				get_color(int z);
 void			get_center(t_env *e);
 void			draw_reload(t_env e);
+void			image_reload (t_env *e);
 
 #endif

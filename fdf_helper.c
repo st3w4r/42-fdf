@@ -54,5 +54,26 @@ void	get_center(t_env *e)
 void	draw_reload(t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
+	image_reload(&e);
 	draw_map(e);
+}
+
+static void	put_pixel_to_image(t_env *e, int x, int y)
+{
+	int i;
+
+	i = x + (y * e->s_line);
+	e->pixel_img[i] = 255;
+	i = y;
+}
+
+void image_reload(t_env *e)
+{
+	e->img = mlx_new_image(e->mlx, WINDOW_SIZE_H, WINDOW_SIZE_W);
+	e->pixel_img = mlx_get_data_addr(e->img, &(e->bpp), &(e->s_line), &(e->endian));
+	put_pixel_to_image(e, 0, 0);
+
+	// e->pixel_img[0] = 255;
+	mlx_put_image_to_window(e->mlx,e->win, e->img, 10, 10);
+	mlx_destroy_image(e->mlx, e->img);
 }
