@@ -12,31 +12,31 @@
 
 #include "fdf.h"
 
-int		expose_hook(t_param *param)
+int		expose_hook(t_env *e)
 {
-	draw_map(*(param->map), *(param->e));
+	draw_map(*(e));
 	return (0);
 }
 
 int		main(int argc, char **argv)
 {
-	t_param	*param;
+	// t_param	*param;
 	t_env	e;
 	t_map	*map;
 
 	if (argc == 2)
 	{
 		map = ft_parse_map(argv, 0);
-		if (!(param = (t_param *)malloc(sizeof(t_param))))
-			ft_exit();
-		get_center(param, map);
-		param->map = map;
-		param->e = &e;
-		draw_windows("42", 1000, 1000, param->e);
-		mlx_expose_hook(e.win, expose_hook, param);
-		mlx_hook(e.win, 2, 3, key_hook, param);
+		// if (!(param = (t_param *)malloc(sizeof(t_param))))
+			// ft_exit();
+		e.map = map;
+		get_center(&e);
+		// param->e = &e;
+		draw_windows("42", 1000, 1000, &e);
+		mlx_expose_hook(e.win, expose_hook, &e);
+		mlx_hook(e.win, 2, 3, key_hook, &e);
 		mlx_loop(e.mlx);
-		free(param);
+		// free(param);
 	}
 	return (0);
 }

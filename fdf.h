@@ -64,10 +64,6 @@
 # define KEY_ROT_Z_U 65462
 # define KEY_ROT_Z_D 65459
 
-typedef struct	s_env {
-	void *mlx;
-	void *win;
-}				t_env;
 
 typedef struct	s_point {
 	double	x;
@@ -87,6 +83,13 @@ typedef struct	s_map {
 	int		len;
 }				t_map;
 
+typedef struct	s_env {
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	t_point	center;
+}				t_env;
+
 typedef struct	s_matrice {
 	double a1;
 	double a2;
@@ -105,13 +108,13 @@ typedef struct	s_matrice {
 	double d3;
 	double d4;
 }				t_matrice;
-
+/*
 typedef struct	s_param {
 	t_map	*map;
 	t_env	*e;
 	t_point	center;
 }				t_param;
-
+*/
 /*
 **	Parse Map
 **	\file parse_arg.c
@@ -127,8 +130,8 @@ int				ft_map_line(char *map);
 **	\file fdf_draw.c
 */
 void			draw_windows(char *title, int weight, int height, t_env *e);
-void			draw_map(t_map map, t_env e);
-void			draw_line(t_point point1, t_point point2, t_env env, int color);
+void			draw_map(t_env e);
+void			draw_line(t_point point1, t_point point2, t_env e, int color);
 
 /*
 **	Gestion Error
@@ -141,9 +144,9 @@ void			ft_exit(void);
 **	\file fdf_cal_matrice.c
 */
 
-void			ft_cal_rotation(t_param *param, double rot, char axe);
-void			ft_cal_translat(t_param *param, double x, double y, double z);
-void			ft_cal_scale(t_param *param, double s);
+void			ft_cal_rotation(t_env *e, double rot, char axe);
+void			ft_cal_translat(t_env *e, double x, double y, double z);
+void			ft_cal_scale(t_env *e, double s);
 
 /*
 **	Mtarice init
@@ -159,14 +162,14 @@ t_matrice		*ft_matrice_scale(double s);
 **	Hook
 **	\file fdf_hook.c
 */
-int				key_hook(int keycode, t_param *param);
+int				key_hook(int keycode, t_env *e);
 
 /*
 **	Function Helpers
 **	\file fdf_helper.c
 */
 int				get_color(int z);
-void			get_center(t_param *param, t_map *m);
-void			draw_reload(t_map map, t_env e);
+void			get_center(t_env *e);
+void			draw_reload(t_env e);
 
 #endif

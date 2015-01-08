@@ -18,7 +18,7 @@ void		draw_windows(char *title, int weight, int height, t_env *e)
 	e->win = mlx_new_window(e->mlx, weight, height, title);
 }
 
-void		draw_map(t_map map, t_env e)
+void		draw_map(t_env e)
 {
 	int			x;
 	int			y;
@@ -26,17 +26,17 @@ void		draw_map(t_map map, t_env e)
 	int			p_color;
 
 	y = 0;
-	while (y < map.len)
+	while (y < e.map->len)
 	{
 		x = 0;
-		while (x < (map.lines[y]->len))
+		while (x < (e.map->lines[y]->len))
 		{
-			p1 = (*map.lines[y]->points[x]);
-			p_color = map.lines[y]->points[x]->color;
-			if (map.lines[y]->points[x + 1])
-				draw_line(p1, (*map.lines[y]->points[x + 1]), e, p_color);
-			if (map.lines[y + 1])
-				draw_line(p1, (*map.lines[y + 1]->points[x]), e, p_color);
+			p1 = (*e.map->lines[y]->points[x]);
+			p_color = e.map->lines[y]->points[x]->color;
+			if (e.map->lines[y]->points[x + 1])
+				draw_line(p1, (*e.map->lines[y]->points[x + 1]), e, p_color);
+			if (e.map->lines[y + 1])
+				draw_line(p1, (*e.map->lines[y + 1]->points[x]), e, p_color);
 			x++;
 		}
 		y++;
@@ -57,7 +57,7 @@ static void	draw_point(t_point point, t_env e, int color)
 	mlx_pixel_put(e.mlx, e.win, point.x, point.y, color);
 }
 
-void		draw_line(t_point point1, t_point point2, t_env env, int color)
+void		draw_line(t_point point1, t_point point2, t_env e, int color)
 {
 	double	tab[6];
 	int		state;
@@ -67,7 +67,7 @@ void		draw_line(t_point point1, t_point point2, t_env env, int color)
 	while (state == 1 &&
 		!((int)point1.x == (int)point2.x && (int)point1.y == (int)point2.y))
 	{
-		draw_point(point1, env, color);
+		draw_point(point1, e, color);
 		tab[5] = tab[4];
 		state = 0;
 		if (tab[5] > -tab[0] && (int)point1.x != (int)point2.x)

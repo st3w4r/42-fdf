@@ -35,22 +35,24 @@ int		get_color(int z)
 		return (0);
 }
 
-void	get_center(t_param *param, t_map *m)
+void	get_center(t_env *e)
 {
 	t_point	p;
 	int		yl;
 	int		xl;
 
-	p = param->center;
-	yl = m->len;
-	xl = m->lines[0]->len;
-	p.x = (m->lines[yl - 1]->points[xl - 1]->x + m->lines[0]->points[0]->x) / 2;
-	p.y = (m->lines[yl - 1]->points[xl - 1]->y + m->lines[0]->points[0]->y) / 2;
-	param->center = p;
+	p = e->center;
+	yl = e->map->len;
+	xl = e->map->lines[0]->len;
+	p.x = (e->map->lines[yl - 1]->points[xl - 1]->x +
+			e->map->lines[0]->points[0]->x) / 2;
+	p.y = (e->map->lines[yl - 1]->points[xl - 1]->y +
+			e->map->lines[0]->points[0]->y) / 2;
+	e->center = p;
 }
 
-void	draw_reload(t_map map, t_env e)
+void	draw_reload(t_env e)
 {
 	mlx_clear_window(e.mlx, e.win);
-	draw_map(map, e);
+	draw_map(e);
 }
