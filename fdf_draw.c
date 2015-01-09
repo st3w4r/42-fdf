@@ -70,23 +70,29 @@ void		draw_line(t_point point1, t_point point2, t_env *e, int color)
 
 	draw_line_params(&point1, &point2, tab);
 	state = 1;
-	while (state == 1 &&
-		!((int)point1.x == (int)point2.x && (int)point1.y == (int)point2.y))
+	if (!(point1.x > WINDOW_SIZE_W + 100 || point1.x <= 0 ||
+		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0 ||
+		point2.x > WINDOW_SIZE_W + 100 || point2.x <= 0 ||
+		point2.y > WINDOW_SIZE_H + 100 || point2.y <= 0))
 	{
-		draw_point(point1, e, color);
-		tab[5] = tab[4];
-		state = 0;
-		if (tab[5] > -tab[0] && (int)point1.x != (int)point2.x)
+		while (state == 1 &&
+			!((int)point1.x == (int)point2.x && (int)point1.y == (int)point2.y))
 		{
-			tab[4] -= tab[2];
-			point1.x += tab[1];
-			state = 1;
-		}
-		if (tab[5] < tab[2] && (int)point1.y != (int)point2.y)
-		{
-			tab[4] += tab[0];
-			point1.y += tab[3];
-			state = 1;
+			draw_point(point1, e, color);
+			tab[5] = tab[4];
+			state = 0;
+			if (tab[5] > -tab[0] && (int)point1.x != (int)point2.x)
+			{
+				tab[4] -= tab[2];
+				point1.x += tab[1];
+				state = 1;
+			}
+			if (tab[5] < tab[2] && (int)point1.y != (int)point2.y)
+			{
+				tab[4] += tab[0];
+				point1.y += tab[3];
+				state = 1;
+			}
 		}
 	}
 }

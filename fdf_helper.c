@@ -27,9 +27,9 @@ int		get_color(int z)
 		return (array_color[1]);
 	else if (z >= 10 && z < 20)
 		return (array_color[2]);
-	else if (z >= 20 && z < 30)
+	else if (z >= 20 && z < 50)
 		return (array_color[3]);
-	else if (z >= 30)
+	else if (z >= 50)
 		return (array_color[4]);
 	else
 		return (0);
@@ -51,23 +51,11 @@ void	get_center(t_env *e)
 	e->center = p;
 }
 
-/*
-static void	put_pixel_to_image(t_env *e, int x, int y, int color)
-{
-	int i;
-
-	i = x + (y * e->s_line);
-	e->pixel_img[i] = color;
-	e->pixel_img[++i] = color >> 8;
-	e->pixel_img[++i] = color >> 16;
-}
-*/
 void	draw_reload(t_env *e)
 {
-	mlx_clear_window(e->mlx, e->win);
-	e->img = mlx_new_image(e->mlx, WINDOW_SIZE_H, WINDOW_SIZE_W);
+	e->img = mlx_new_image(e->mlx, WINDOW_SIZE_W + 100, WINDOW_SIZE_H + 100);
 	e->pixel_img = mlx_get_data_addr(e->img, &(e->bpp), &(e->s_line), &(e->endian));
 	draw_map(e);
-	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	mlx_put_image_to_window(e->mlx, e->win, e->img, -50, -50);
 	mlx_destroy_image(e->mlx, e->img);
 }

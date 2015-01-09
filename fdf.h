@@ -32,10 +32,10 @@
 /*
 **	Move pixel
 */
-# define MOVE_UP -10
-# define MOVE_DOWN 10
-# define MOVE_LEFT -10
-# define MOVE_RIGHT 10
+# define MOVE_UP -100
+# define MOVE_DOWN 100
+# define MOVE_LEFT -100
+# define MOVE_RIGHT 100
 
 # define MOVE_ZOOM_IN 1.1
 # define MOVE_ZOOM_OUT 0.9

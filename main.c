@@ -32,7 +32,7 @@ int		main(int argc, char **argv)
 		e.map = map;
 		get_center(&e);
 		// param->e = &e;
-		draw_windows("42 FDF", 1000, 1000, &e);
+		draw_windows("42 FDF", WINDOW_SIZE_W, WINDOW_SIZE_H, &e);
 		mlx_expose_hook(e.win, expose_hook, &e);
 		mlx_hook(e.win, 2, 3, key_hook, &e);
 		mlx_loop(e.mlx);
