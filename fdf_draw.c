@@ -25,7 +25,6 @@ void		draw_map(t_env *e)
 	t_point		p1;
 	int			p_color;
 
-
 	y = 0;
 	while (y < e->map->len)
 	{
@@ -63,36 +62,31 @@ static void	draw_point(t_point point, t_env *e, int color)
 	e->pixel_img[++i] = color >> 16;
 }
 
-void		draw_line(t_point point1, t_point point2, t_env *e, int color)
+void		draw_line(t_point p1, t_point p2, t_env *e, int color)
 {
 	double	tab[6];
 	int		state;
 
-	draw_line_params(&point1, &point2, tab);
+	if (point_in_window(p1, p2) == 0)
+		return ;
+	draw_line_params(&p1, &p2, tab);
 	state = 1;
-	if (!(point1.x > WINDOW_SIZE_W + 100 || point1.x <= 0 ||
-		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0 ||
-		point2.x > WINDOW_SIZE_W + 100 || point2.x <= 0 ||
-		point2.y > WINDOW_SIZE_H + 100 || point2.y <= 0))
+	while (state == 1 && !((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y))
 	{
-		while (state == 1 &&
-			!((int)point1.x == (int)point2.x && (int)point1.y == (int)point2.y))
+		draw_point(p1, e, color);
+		tab[5] = tab[4];
+		state = 0;
+		if (tab[5] > -tab[0] && (int)p1.x != (int)p2.x)
 		{
-			draw_point(point1, e, color);
-			tab[5] = tab[4];
-			state = 0;
-			if (tab[5] > -tab[0] && (int)point1.x != (int)point2.x)
-			{
-				tab[4] -= tab[2];
-				point1.x += tab[1];
-				state = 1;
-			}
-			if (tab[5] < tab[2] && (int)point1.y != (int)point2.y)
-			{
-				tab[4] += tab[0];
-				point1.y += tab[3];
-				state = 1;
-			}
+			tab[4] -= tab[2];
+			p1.x += tab[1];
+			state = 1;
+		}
+		if (tab[5] < tab[2] && (int)p1.y != (int)p2.y)
+		{
+			tab[4] += tab[0];
+			p1.y += tab[3];
+			state = 1;
 		}
 	}
 }

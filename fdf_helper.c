@@ -54,8 +54,32 @@ void	get_center(t_env *e)
 void	draw_reload(t_env *e)
 {
 	e->img = mlx_new_image(e->mlx, WINDOW_SIZE_W + 100, WINDOW_SIZE_H + 100);
-	e->pixel_img = mlx_get_data_addr(e->img, &(e->bpp), &(e->s_line), &(e->endian));
+	e->pixel_img = mlx_get_data_addr(e->img, &(e->bpp), &(e->s_line), &(e->ed));
 	draw_map(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, -50, -50);
 	mlx_destroy_image(e->mlx, e->img);
+}
+
+void	adapt_map(t_env *e)
+{
+	int		w;
+	int		h;
+	double	s;
+
+	w = (WINDOW_SIZE_W + 100) / 2;
+	h = (WINDOW_SIZE_H + 100) / 2;
+	s = (w - 100) / (e->center.x);
+	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
+	ft_cal_scale(e, s);
+}
+
+int		point_in_window(t_point point1, t_point point2)
+{
+	if (!(point1.x > WINDOW_SIZE_W + 100 || point1.x <= 0 ||
+		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0 ||
+		point2.x > WINDOW_SIZE_W + 100 || point2.x <= 0 ||
+		point2.y > WINDOW_SIZE_H + 100 || point2.y <= 0))
+		return (1);
+	else
+		return (0);
 }

@@ -22,13 +22,14 @@
 
 # include "libft/includes/libft.h"
 
-# define DEC_T 0
-# define DEC_L 0
+# define DEC_T 100
+# define DEC_L 100
 # define SIZE_W 20
 # define SIZE_H 20
 
 # define WINDOW_SIZE_H 1000
 # define WINDOW_SIZE_W 1000
+
 /*
 **	Move pixel
 */
@@ -66,7 +67,6 @@
 # define KEY_ROT_Z_U 65462
 # define KEY_ROT_Z_D 65459
 
-
 typedef struct	s_point {
 	double	x;
 	double	y;
@@ -94,7 +94,7 @@ typedef struct	s_env {
 	char	*pixel_img;
 	int		bpp;
 	int		s_line;
-	int		endian;
+	int		ed;
 }				t_env;
 
 typedef struct	s_matrice {
@@ -115,13 +115,7 @@ typedef struct	s_matrice {
 	double d3;
 	double d4;
 }				t_matrice;
-/*
-typedef struct	s_param {
-	t_map	*map;
-	t_env	*e;
-	t_point	center;
-}				t_param;
-*/
+
 /*
 **	Parse Map
 **	\file parse_arg.c
@@ -138,7 +132,7 @@ int				ft_map_line(char *map);
 */
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_map(t_env *e);
-void			draw_line(t_point point1, t_point point2, t_env *e, int color);
+void			draw_line(t_point p1, t_point p2, t_env *e, int color);
 
 /*
 **	Gestion Error
@@ -178,5 +172,7 @@ int				key_hook(int keycode, t_env *e);
 int				get_color(int z);
 void			get_center(t_env *e);
 void			draw_reload(t_env *e);
+int				point_in_window(t_point point1, t_point point2);
+void			adapt_map(t_env *e);
 
 #endif
