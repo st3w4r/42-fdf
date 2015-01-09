@@ -137,8 +137,8 @@ int				ft_map_line(char *map);
 **	\file fdf_draw.c
 */
 void			draw_windows(char *title, int weight, int height, t_env *e);
-void			draw_map(t_env e);
-void			draw_line(t_point point1, t_point point2, t_env e, int color);
+void			draw_map(t_env *e);
+void			draw_line(t_point point1, t_point point2, t_env *e, int color);
 
 /*
 **	Gestion Error
@@ -177,7 +177,6 @@ int				key_hook(int keycode, t_env *e);
 */
 int				get_color(int z);
 void			get_center(t_env *e);
-void			draw_reload(t_env e);
-void			image_reload (t_env *e);
+void			draw_reload(t_env *e);
 
 #endif

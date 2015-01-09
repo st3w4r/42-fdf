@@ -58,6 +58,6 @@ int				key_hook(int keycode, t_env *e)
 	key_hook_rotation(keycode, e);
 	key_hook_translation(keycode, e);
 	key_hook_scale(keycode, e);
-	draw_reload(*(e));
+	draw_reload(e);
 	return (0);
 }

@@ -14,7 +14,7 @@
 
 int		expose_hook(t_env *e)
 {
-	draw_map(*(e));
+	draw_reload(e);
 	return (0);
 }
 
@@ -32,7 +32,7 @@ int		main(int argc, char **argv)
 		e.map = map;
 		get_center(&e);
 		// param->e = &e;
-		draw_windows("42", 1000, 1000, &e);
+		draw_windows("42 FDF", 1000, 1000, &e);
 		mlx_expose_hook(e.win, expose_hook, &e);
 		mlx_hook(e.win, 2, 3, key_hook, &e);
 		mlx_loop(e.mlx);
