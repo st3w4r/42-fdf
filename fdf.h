@@ -72,7 +72,7 @@ typedef struct	s_point {
 	double	y;
 	double	z;
 	double	s;
-	int		color;
+	int		z_color;
 }				t_point;
 
 typedef struct	s_line {
@@ -132,13 +132,14 @@ int				ft_map_line(char *map);
 */
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_map(t_env *e);
-void			draw_line(t_point p1, t_point p2, t_env *e, int color);
+void			draw_line(t_point p1, t_point p2, t_env *e);
 
 /*
 **	Gestion Error
 **	\file fdf_error.c
 */
 void			ft_exit(void);
+void			fdf_map_error(void);
 
 /*
 **	Calcul of matrice
@@ -169,7 +170,7 @@ int				key_hook(int keycode, t_env *e);
 **	Function Helpers
 **	\file fdf_helper.c
 */
-int				get_color(int z);
+int				get_color(t_point *point1, t_point *point2);
 void			get_center(t_env *e);
 void			draw_reload(t_env *e);
 int				point_in_window(t_point point1, t_point point2);

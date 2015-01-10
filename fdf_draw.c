@@ -23,20 +23,25 @@ void		draw_map(t_env *e)
 	int			x;
 	int			y;
 	t_point		p1;
-	int			p_color;
+	// int			z_color;
 
 	y = 0;
 	while (y < e->map->len)
 	{
+		// if (!(e->map->lines[y]))
+			// return;
 		x = 0;
 		while (x < (e->map->lines[y]->len))
 		{
+			// if ((e->map->lines[y]->points[x]) == NULL)
+				// return;
 			p1 = (*e->map->lines[y]->points[x]);
-			p_color = e->map->lines[y]->points[x]->color;
+			// z_color = e->map->lines[y]->points[x]->z_color;
+			// ft_putendl("IN");
 			if (e->map->lines[y]->points[x + 1])
-				draw_line(p1, (*e->map->lines[y]->points[x + 1]), e, p_color);
+				draw_line(p1, (*e->map->lines[y]->points[x + 1]), e);
 			if (e->map->lines[y + 1])
-				draw_line(p1, (*e->map->lines[y + 1]->points[x]), e, p_color);
+				draw_line(p1, (*e->map->lines[y + 1]->points[x]), e);
 			x++;
 		}
 		y++;
@@ -62,7 +67,7 @@ static void	draw_point(t_point point, t_env *e, int color)
 	e->pixel_img[++i] = color >> 16;
 }
 
-void		draw_line(t_point p1, t_point p2, t_env *e, int color)
+void		draw_line(t_point p1, t_point p2, t_env *e)
 {
 	double	tab[6];
 	int		state;
@@ -73,7 +78,7 @@ void		draw_line(t_point p1, t_point p2, t_env *e, int color)
 	state = 1;
 	while (state == 1 && !((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y))
 	{
-		draw_point(p1, e, color);
+		draw_point(p1, e, get_color(&p1, &p2));
 		tab[5] = tab[4];
 		state = 0;
 		if (tab[5] > -tab[0] && (int)p1.x != (int)p2.x)

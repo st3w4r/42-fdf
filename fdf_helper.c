@@ -12,27 +12,28 @@
 
 #include "fdf.h"
 
-int		get_color(int z)
+int		get_color(t_point *point1, t_point *point2)
 {
-	int array_color[5];
+	int color;
+	int z;
 
-	array_color[0] = 0x0000FF;
-	array_color[1] = 0xFFFF00;
-	array_color[2] = 0x00FF00;
-	array_color[3] = 0x7F5B13;
-	array_color[4] = 0xFFFFFF;
-	if (z < 0)
-		return (array_color[0]);
-	else if (z >= 0 && z < 10)
-		return (array_color[1]);
-	else if (z >= 10 && z < 20)
-		return (array_color[2]);
-	else if (z >= 20 && z < 50)
-		return (array_color[3]);
-	else if (z >= 50)
-		return (array_color[4]);
+	if (point2->z_color > point1->z_color)
+		z = point2->z_color;
 	else
-		return (0);
+		z = point1->z_color;
+	if (z < 0)
+		color = 0x0000FF;
+	else if (z >= 0 && z < 10)
+		color = 0xFFFF00;
+	else if (z >= 10 && z < 20)
+		color = 0x00FF00;
+	else if (z >= 20 && z < 50)
+		color = 0x7F5B13;
+	else if (z >= 50)
+		color = 0xFFFFFF;
+	else
+		color = 0;
+	return (color);
 }
 
 void	get_center(t_env *e)
@@ -44,6 +45,10 @@ void	get_center(t_env *e)
 	p = e->center;
 	yl = e->map->len;
 	xl = e->map->lines[0]->len;
+	// if (!(e->map->lines[yl]))
+		// return ;
+	// if (!(e->map->lines[yl]->points[xl - 1]))
+		// return ;
 	p.x = (e->map->lines[yl - 1]->points[xl - 1]->x +
 			e->map->lines[0]->points[0]->x) / 2;
 	p.y = (e->map->lines[yl - 1]->points[xl - 1]->y +
@@ -71,6 +76,10 @@ void	adapt_map(t_env *e)
 	s = (w - 100) / (e->center.x);
 	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
 	ft_cal_scale(e, s);
+	// ft_cal_rotation(e, 0.9, 'x');
+	// ft_cal_rotation(e, -0.9, 'y');
+	// ft_cal_rotation(e, 0.3, 'z');
+
 }
 
 int		point_in_window(t_point point1, t_point point2)

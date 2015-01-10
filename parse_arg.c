@@ -46,7 +46,7 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 		a_point->y = nb_line * SIZE_H;
 		a_point->z = ft_getnbr(array_str[i]);
 		a_point->s = 1;
-		a_point->color = get_color(a_point->z);
+		a_point->z_color = a_point->z;
 		(*array_points)[i] = a_point;
 		i++;
 	}

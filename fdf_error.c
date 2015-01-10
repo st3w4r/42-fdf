@@ -16,3 +16,8 @@ void	ft_exit(void)
 {
 	exit(1);
 }
+
+void	fdf_map_error(void)
+{
+	exit(1);
+}
