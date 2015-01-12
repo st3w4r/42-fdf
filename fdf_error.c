@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	ft_exit(void)
+void	fdf_exit(void)
 {
 	exit(1);
 }
@@ -20,11 +20,11 @@ void	ft_exit(void)
 void	fdf_malloc_error(void)
 {
 	ft_putstr_fd("malloc error\n", 2);
-	ft_exit();
+	fdf_exit();
 }
 
 void	fdf_map_error(void)
 {
 	ft_putstr_fd("map error\n", 2);
-	ft_exit();
+	fdf_exit();
 }

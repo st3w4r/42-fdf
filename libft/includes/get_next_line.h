@@ -25,10 +25,4 @@
 
 int			get_next_line(int const fd, char **line);
 
-typedef struct
-{
-	int		is_read;
-	char	*save_buf;
-}			t_data;
-
 #endif

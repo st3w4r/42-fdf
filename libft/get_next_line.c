@@ -12,100 +12,58 @@
 
 #include "get_next_line.h"
 
-static size_t	ft_len_c_stop(const char *str, int start, char c_stop)
+static int	ft_read_line(int fd, char **buf, char **line, char *pos)
 {
-	size_t		counter;
+	int	result;
 
-	if (!str)
-		return (0);
-	counter = 0;
-	while (str[start] && (str[start] != c_stop))
+	*line = ft_strdup(*buf);
+	while (!pos)
 	{
-		start++;
-		counter++;
+		if ((result = read(fd, *buf, BUFF_SIZE)) < 0)
+			return (-1);
+		if ((pos = ft_strchr(*buf, '\n')) == NULL && !result)
+			return ((*buf)[0] = 0);
+		else if (pos)
+		{
+			(*buf)[result] = result ? 0 : (*buf)[result];
+			pos[0] = 0;
+			*line = ft_strjoin(*line, *buf);
+			ft_strcpy(*buf, pos + 1);
+		}
+		else
+		{
+			(*buf)[result] = result ? 0 : (*buf)[result];
+			*line = ft_strjoin(*line, *buf);
+			(*buf)[0] = 0;
+		}
 	}
-	return (counter);
+	return (*line ? 1 : -1);
 }
 
-static int		ft_retln(char *str, char **line, t_data *data)
+int			get_next_line(int const fd, char **line)
 {
-	int		len_str;
-	char	*tmp;
-	char	*tmp_l;
+	static char *buf;
+	char		*pos;
+	int			result;
 
-	len_str = 0;
-	if (ft_strchr(str, '\n') == 0)
+	if (BUFF_SIZE < 1 || !line)
+		return (-1);
+	if (!buf)
+		if (!(buf = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
+			return (-1);
+	pos = ft_strchr(buf, '\n');
+	if (pos)
 	{
-		tmp_l = *line;
-		*line = ft_strjoin(tmp_l, str);
-		free(tmp_l);
+		*pos = 0;
+		*line = ft_strdup(buf);
+		ft_strcpy(buf, pos + 1);
+		return (*line ? 1 : -1);
 	}
 	else
-	{
-		len_str = ft_len_c_stop(str, 0, '\n');
-		tmp = ft_strsub(str, 0, len_str);
-		tmp_l = *line;
-		*line = ft_strjoin(tmp_l, tmp);
-		free(tmp_l);
-		free(tmp);
-		tmp = ft_strsub(str, len_str + 1, ft_strlen(str) - len_str);
-		free(data->save_buf);
-		data->save_buf = tmp;
-		return (1);
-	}
-	return (0);
-}
-
-static int		ft_read_line(int fd, char *buf, char **line, t_data *data)
-{
-	int	ret;
-
-	ret = 0;
-	if (!(data->save_buf))
-		data->save_buf = ft_strdup("");
-	if (ft_retln(data->save_buf, line, data) == 1)
-		return (data->is_read = 1);
-	free(data->save_buf);
-	data->save_buf = ft_strdup("");
-	while ((ret = read(fd, buf, BUFF_SIZE)))
-	{
-		buf[ret] = 0;
-		if (ft_retln(buf, line, data) == 1)
-			return (1);
-		data->is_read = 1;
-	}
-	if (ret == -1)
+		result = ft_read_line(fd, &buf, line, NULL);
+	if (result == 0 && ft_strlen(*line) == 0)
+		free(buf);
+	if (result == -1)
 		return (-1);
-	if (data->is_read == 1)
-	{
-		data->is_read = 0;
-		if (ft_strcmp("", *line) != 0)
-			return (1);
-	}
-	return (0);
-}
-
-int				get_next_line(int const fd, char **line)
-{
-	char			*buf;
-	int				result;
-	static t_data	*data;
-
-	if (!line)
-		return (-1);
-	if (!data)
-		if ((data = (t_data*)malloc(sizeof(t_data))) == NULL)
-			return (-1);
-	if (!(buf = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
-		return (-1);
-	buf[0] = 0;
-	*line = ft_strdup("");
-	result = ft_read_line(fd, buf, line, data);
-	if ((result == 0) || (result == -1))
-	{
-		free(data->save_buf);
-		free(data);
-	}
-	free(buf);
-	return (result);
+	return (result ? 1 : ft_strlen(*line) != 0);
 }

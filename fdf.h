@@ -52,6 +52,7 @@
 **	Key code
 */
 # define KEY_ESC 65307
+
 # define KEY_UP 65362
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
@@ -138,7 +139,7 @@ void			draw_line(t_point p1, t_point p2, t_env *e);
 **	Gestion Error
 **	\file fdf_error.c
 */
-void			ft_exit(void);
+void			fdf_exit(void);
 void			fdf_malloc_error(void);
 void			fdf_map_error(void);
 
