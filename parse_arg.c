@@ -61,7 +61,8 @@ int		ft_map_line(char *map)
 
 	fd = 0;
 	nb_lines = 0;
-	buf = (char*)malloc(sizeof(char));
+	if (!(buf = (char*)malloc(sizeof(char))))
+		ft_exit();
 	if ((fd = open(map, O_RDONLY)))
 	{
 		while (read(fd, buf, 1))
@@ -83,14 +84,16 @@ t_map	*ft_parse_map(char **av, int fd)
 	t_point	**array_points;
 
 	nb_line = 0;
-	map = (t_map*)malloc(sizeof(t_map));
-	map->lines = (t_line**)malloc(sizeof(t_line) * ft_map_line(av[1]));
+	if (!(map = (t_map*)malloc(sizeof(t_map))) ||
+		!(map->lines = (t_line**)malloc(sizeof(t_line) * ft_map_line(av[1]))))
+		ft_exit();
 	map->len = 0;
 	if ((fd = open(av[1], O_RDONLY)) > 0)
 	{
 		while ((get_next_line(fd, &line)) > 0)
 		{
-			line_map = (t_line*)malloc(sizeof(t_line));
+			if (!(line_map = (t_line*)malloc(sizeof(t_line))))
+				ft_exit();
 			line_map->len = ft_points(line, nb_line, &array_points);
 			line_map->points = array_points;
 			map->lines[nb_line] = line_map;

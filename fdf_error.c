@@ -19,5 +19,6 @@ void	ft_exit(void)
 
 void	fdf_map_error(void)
 {
+	write(2, "Map error\n", 10);
 	exit(1);
 }

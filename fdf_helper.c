@@ -74,9 +74,9 @@ void	adapt_map(t_env *e)
 	s = (w - 100) / (e->center.x);
 	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
 	ft_cal_scale(e, s);
-	// ft_cal_rotation(e, 0.9, 'x');
-	// ft_cal_rotation(e, -0.9, 'y');
-	// ft_cal_rotation(e, 0.3, 'z');
+	ft_cal_rotation(e, 0.9, 'x');
+	ft_cal_rotation(e, -0.9, 'y');
+	ft_cal_rotation(e, 0.3, 'z');
 
 }
 

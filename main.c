@@ -26,6 +26,8 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		map = ft_parse_map(argv, 0);
+		if (map->len == 0 || map->lines[0]->len == 0)
+			fdf_map_error();
 		e.map = map;
 		get_center(&e);
 		draw_windows("42 FDF", WINDOW_SIZE_W, WINDOW_SIZE_H, &e);
