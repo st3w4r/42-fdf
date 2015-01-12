@@ -74,10 +74,9 @@ void	adapt_map(t_env *e)
 	s = (w - 200) / (e->center.x);
 	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
 	ft_cal_scale(e, s);
-	ft_cal_rotation(e, 0.6, 'x');
-	ft_cal_rotation(e, -0.6, 'y');
-	ft_cal_rotation(e, 0.5, 'z');
-
+	// ft_cal_rotation(e, 0.6, 'x');
+	// ft_cal_rotation(e, -0.6, 'y');
+	// ft_cal_rotation(e, 0.5, 'z');
 }
 
 int		point_in_window(t_point point1, t_point point2)

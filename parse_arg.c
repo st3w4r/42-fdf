@@ -37,7 +37,7 @@ int		ft_points(char *line, int nb_line, t_point ***array_points)
 	while (array_str[i] != 0)
 		i++;
 	if (!((*array_points) = (t_point**)malloc(sizeof(t_point) * i)))
-		ft_exit();
+		fdf_malloc_error();
 	i = 0;
 	while (array_str[i] != 0)
 	{
@@ -62,14 +62,13 @@ int		ft_map_line(char *map)
 	fd = 0;
 	nb_lines = 0;
 	if (!(buf = (char*)malloc(sizeof(char))))
-		ft_exit();
-	if ((fd = open(map, O_RDONLY)))
+		fdf_malloc_error();
+	if ((fd = open(map, O_RDONLY)) < 0)
+		fdf_map_error();
+	while (read(fd, buf, 1))
 	{
-		while (read(fd, buf, 1))
-		{
-			if (ft_strcmp("\n", buf) == 0)
-				nb_lines++;
-		}
+		if (ft_strcmp("\n", buf) == 0)
+			nb_lines++;
 	}
 	close(fd);
 	return (nb_lines);
@@ -86,14 +85,14 @@ t_map	*ft_parse_map(char **av, int fd)
 	nb_line = 0;
 	if (!(map = (t_map*)malloc(sizeof(t_map))) ||
 		!(map->lines = (t_line**)malloc(sizeof(t_line) * ft_map_line(av[1]))))
-		ft_exit();
+		fdf_malloc_error();
 	map->len = 0;
 	if ((fd = open(av[1], O_RDONLY)) > 0)
 	{
 		while ((get_next_line(fd, &line)) > 0)
 		{
 			if (!(line_map = (t_line*)malloc(sizeof(t_line))))
-				ft_exit();
+				fdf_malloc_error();
 			line_map->len = ft_points(line, nb_line, &array_points);
 			line_map->points = array_points;
 			map->lines[nb_line] = line_map;

@@ -139,6 +139,7 @@ void			draw_line(t_point p1, t_point p2, t_env *e);
 **	\file fdf_error.c
 */
 void			ft_exit(void);
+void			fdf_malloc_error(void);
 void			fdf_map_error(void);
 
 /*

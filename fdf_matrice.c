@@ -17,7 +17,7 @@ t_matrice	*ft_matrice_rotation_x(double beta)
 	t_matrice *m;
 
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
+		fdf_malloc_error();
 	m->a1 = 1;
 	m->b2 = cos(beta);
 	m->b3 = -sin(beta);
@@ -32,7 +32,7 @@ t_matrice	*ft_matrice_rotation_y(double beta)
 	t_matrice *m;
 
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
+		fdf_malloc_error();
 	m->a1 = cos(beta);
 	m->a3 = sin(beta);
 	m->c1 = -sin(beta);
@@ -47,7 +47,7 @@ t_matrice	*ft_matrice_rotation_z(double beta)
 	t_matrice *m;
 
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
+		fdf_malloc_error();
 	m->a1 = cos(beta);
 	m->a2 = -sin(beta);
 	m->b1 = sin(beta);
@@ -62,7 +62,7 @@ t_matrice	*ft_matrice_translation(double tx, double ty, double tz)
 	t_matrice *m;
 
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
+		fdf_malloc_error();
 	m->a4 = tx;
 	m->b4 = ty;
 	m->c4 = tz;
@@ -78,7 +78,7 @@ t_matrice	*ft_matrice_scale(double s)
 	t_matrice *m;
 
 	if (!(m = (t_matrice*)ft_memalloc(sizeof(t_matrice))))
-		ft_exit();
+		fdf_malloc_error();
 	m->a1 = s;
 	m->b2 = s;
 	m->c3 = s;
