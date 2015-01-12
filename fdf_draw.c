@@ -67,13 +67,13 @@ void		draw_line(t_point p1, t_point p2, t_env *e)
 	double	tab[6];
 	int		state;
 
-	if (point_in_window(p1, p2) == 0)
+	if (!point_out_window(p1) && !point_out_window(p2))
 		return ;
-	draw_line_params(&p1, &p2, tab);
-	state = 1;
+	draw_line_params(&p1, &p2, tab), state = 1;
 	while (state == 1 && !((int)p1.x == (int)p2.x && (int)p1.y == (int)p2.y))
 	{
-		draw_point(p1, e, get_color(&p1, &p2));
+		if (point_out_window(p1) == 1)
+			draw_point(p1, e, get_color(&p1, &p2));
 		tab[5] = tab[4];
 		state = 0;
 		if (tab[5] > -tab[0] && (int)p1.x != (int)p2.x)

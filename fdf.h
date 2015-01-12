@@ -28,7 +28,7 @@
 # define SIZE_H 20
 
 # define WINDOW_SIZE_H 1000
-# define WINDOW_SIZE_W 1000
+# define WINDOW_SIZE_W 2000
 
 /*
 **	Move pixel
@@ -177,5 +177,6 @@ void			get_center(t_env *e);
 void			draw_reload(t_env *e);
 int				point_in_window(t_point point1, t_point point2);
 void			adapt_map(t_env *e);
+int				point_out_window(t_point point1);
 
 #endif

@@ -71,20 +71,15 @@ void	adapt_map(t_env *e)
 
 	w = (WINDOW_SIZE_W + 100) / 2;
 	h = (WINDOW_SIZE_H + 100) / 2;
-	s = (w - 200) / (e->center.x);
+	s = (w - 600) / (e->center.x);
 	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
 	ft_cal_scale(e, s);
-	// ft_cal_rotation(e, 0.6, 'x');
-	// ft_cal_rotation(e, -0.6, 'y');
-	// ft_cal_rotation(e, 0.5, 'z');
 }
 
-int		point_in_window(t_point point1, t_point point2)
+int		point_out_window(t_point point1)
 {
 	if (!(point1.x > WINDOW_SIZE_W + 100 || point1.x <= 0 ||
-		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0 ||
-		point2.x > WINDOW_SIZE_W + 100 || point2.x <= 0 ||
-		point2.y > WINDOW_SIZE_H + 100 || point2.y <= 0))
+		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0))
 		return (1);
 	else
 		return (0);
