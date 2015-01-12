@@ -27,29 +27,20 @@ static size_t		ft_len_c_stop(const char *str, int start, char c_stop)
 	return (counter);
 }
 
-static int			ft_split_count(char const *s, char c)
+static int			ft_split_count(char *str, char c)
 {
-	int		is_word;
 	int		count_word;
 	int		counter;
-	char	*str;
 
-	str = (char *)s;
 	counter = 0;
 	count_word = 0;
 	while (str[counter])
 	{
-		is_word = 0;
-		while ((str[counter] != (char)c) && str[counter + 1])
-		{
-			if (is_word == 0)
-			{
-				is_word = 1;
-				count_word++;
-			}
+		while (str[counter] && str[counter] != c)
 			counter++;
-		}
-		counter++;
+		while (str[counter] && str[counter] == c)
+			counter++;
+		count_word++;
 	}
 	return (count_word);
 }
@@ -67,10 +58,10 @@ char				**ft_strsplit(char const *s, char c)
 		return (NULL);
 	counter = 0;
 	count_word = ft_split_count(str, c);
-	array_s = (char**)ft_memalloc(sizeof(char**) * (count_word + 1));
+	array_s = (char**)ft_memalloc(sizeof(char*) * (count_word + 1));
 	counter = 0;
 	i = 0;
-	while (i <= count_word)
+	while (i < count_word)
 	{
 		while ((str[counter] == (char)c) && str[counter])
 			counter++;
