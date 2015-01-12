@@ -22,15 +22,17 @@ int		get_color(t_point *point1, t_point *point2)
 	else
 		z = point1->z_color;
 	if (z < 0)
-		color = 0x0000FF;
+		color = 0x0D6386;
 	else if (z >= 0 && z < 10)
-		color = 0xFFFF00;
+		color = 0x32A862;
 	else if (z >= 10 && z < 20)
-		color = 0x00FF00;
+		color = 0x8FC89A;
 	else if (z >= 20 && z < 50)
-		color = 0x7F5B13;
-	else if (z >= 50)
-		color = 0xFFFFFF;
+		color = 0xFAECBE;
+	else if (z >= 50 && z < 70)
+		color = 0x996E56;
+	else if (z >= 70)
+		color = 0xE0D3CC;
 	else
 		color = 0;
 	return (color);
@@ -44,11 +46,7 @@ void	get_center(t_env *e)
 
 	p = e->center;
 	yl = e->map->len;
-	xl = e->map->lines[0]->len;
-	// if (!(e->map->lines[yl]))
-		// return ;
-	// if (!(e->map->lines[yl]->points[xl - 1]))
-		// return ;
+	xl = e->map->lines[yl - 1]->len;
 	p.x = (e->map->lines[yl - 1]->points[xl - 1]->x +
 			e->map->lines[0]->points[0]->x) / 2;
 	p.y = (e->map->lines[yl - 1]->points[xl - 1]->y +

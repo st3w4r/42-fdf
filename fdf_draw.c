@@ -23,25 +23,20 @@ void		draw_map(t_env *e)
 	int			x;
 	int			y;
 	t_point		p1;
-	// int			z_color;
 
 	y = 0;
 	while (y < e->map->len)
 	{
-		// if (!(e->map->lines[y]))
-			// return;
 		x = 0;
 		while (x < (e->map->lines[y]->len))
 		{
-			// if ((e->map->lines[y]->points[x]) == NULL)
-				// return;
 			p1 = (*e->map->lines[y]->points[x]);
-			// z_color = e->map->lines[y]->points[x]->z_color;
-			// ft_putendl("IN");
 			if (e->map->lines[y]->points[x + 1])
 				draw_line(p1, (*e->map->lines[y]->points[x + 1]), e);
 			if (e->map->lines[y + 1])
-				draw_line(p1, (*e->map->lines[y + 1]->points[x]), e);
+				if (e->map->lines[y + 1]->points[x] &&
+					x <= e->map->lines[y + 1]->len)
+					draw_line(p1, (*e->map->lines[y + 1]->points[x]), e);
 			x++;
 		}
 		y++;
