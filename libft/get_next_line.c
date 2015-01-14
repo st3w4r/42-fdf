@@ -12,6 +12,18 @@
 
 #include "get_next_line.h"
 
+static char	*ft_strjoinf(char *s1, char *s2)
+{
+	char	*ret;
+
+	if ((ret = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)) == NULL)
+		return (NULL);
+	ft_strcpy(ret, s1);
+	ft_strcat(ret, s2);
+	free((char*)s1);
+	return (ret);
+}
+
 static int	ft_read_line(int fd, char **buf, char **line, char *pos)
 {
 	int	result;
@@ -27,13 +39,13 @@ static int	ft_read_line(int fd, char **buf, char **line, char *pos)
 		{
 			(*buf)[result] = result ? 0 : (*buf)[result];
 			pos[0] = 0;
-			*line = ft_strjoin(*line, *buf);
+			*line = ft_strjoinf(*line, *buf);
 			ft_strcpy(*buf, pos + 1);
 		}
 		else
 		{
 			(*buf)[result] = result ? 0 : (*buf)[result];
-			*line = ft_strjoin(*line, *buf);
+			*line = ft_strjoinf(*line, *buf);
 			(*buf)[0] = 0;
 		}
 	}

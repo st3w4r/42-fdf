@@ -71,6 +71,7 @@ int		ft_map_line(char *map)
 			nb_lines++;
 	}
 	close(fd);
+	free(buf);
 	return (nb_lines);
 }
 

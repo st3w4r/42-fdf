@@ -20,21 +20,23 @@ int		expose_hook(t_env *e)
 
 int		main(int argc, char **argv)
 {
-	t_env	e;
+	t_env	*e;
 	t_map	*map;
 
 	if (argc == 2)
 	{
+		if (!(e = (t_env*)malloc(sizeof(t_env))))
+			fdf_malloc_error();
 		map = ft_parse_map(argv, 0);
 		if (map->len == 0 || map->lines[0]->len == 0)
 			fdf_map_error();
-		e.map = map;
-		get_center(&e);
-		draw_windows("42 FDF", WINDOW_SIZE_W, WINDOW_SIZE_H, &e);
-		adapt_map(&e);
-		mlx_expose_hook(e.win, expose_hook, &e);
-		mlx_hook(e.win, 2, 3, key_hook, &e);
-		mlx_loop(e.mlx);
+		e->map = map;
+		get_center(e);
+		draw_windows("42 FDF", WINDOW_SIZE_W, WINDOW_SIZE_H, e);
+		adapt_map(e);
+		mlx_expose_hook(e->win, expose_hook, e);
+		mlx_hook(e->win, 2, 3, key_hook, e);
+		mlx_loop(e->mlx);
 	}
 	return (0);
 }

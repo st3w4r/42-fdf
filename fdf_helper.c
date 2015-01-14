@@ -76,10 +76,10 @@ void	adapt_map(t_env *e)
 	ft_cal_scale(e, s);
 }
 
-int		point_out_window(t_point point1)
+int		point_out_window(t_point *point1)
 {
-	if (!(point1.x > WINDOW_SIZE_W + 100 || point1.x <= 0 ||
-		point1.y > WINDOW_SIZE_H + 100 || point1.y <= 0))
+	if (!(point1->x > WINDOW_SIZE_W + 100 || point1->x <= 0 ||
+		point1->y > WINDOW_SIZE_H + 100 || point1->y <= 0))
 		return (1);
 	else
 		return (0);

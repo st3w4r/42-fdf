@@ -133,7 +133,6 @@ int				ft_map_line(char *map);
 */
 void			draw_windows(char *title, int weight, int height, t_env *e);
 void			draw_map(t_env *e);
-void			draw_line(t_point p1, t_point p2, t_env *e);
 
 /*
 **	Gestion Error
@@ -177,6 +176,6 @@ void			get_center(t_env *e);
 void			draw_reload(t_env *e);
 int				point_in_window(t_point point1, t_point point2);
 void			adapt_map(t_env *e);
-int				point_out_window(t_point point1);
+int				point_out_window(t_point *point1);
 
 #endif
