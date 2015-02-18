@@ -38,5 +38,7 @@ int		main(int argc, char **argv)
 		mlx_hook(e->win, 2, 3, key_hook, e);
 		mlx_loop(e->mlx);
 	}
+	else
+		fdf_arg_error();
 	return (0);
 }

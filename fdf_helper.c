@@ -71,6 +71,7 @@ void	adapt_map(t_env *e)
 
 	w = (WINDOW_SIZE_W + 100) / 2;
 	h = (WINDOW_SIZE_H + 100) / 2;
+	e->center.x == 0 ? e->center.x = 10 : e->center.x;
 	s = (w - 600) / (e->center.x);
 	ft_cal_translat(e, -e->center.x + w, -e->center.y + h, 0);
 	ft_cal_scale(e, s);

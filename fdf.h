@@ -141,6 +141,7 @@ void			draw_map(t_env *e);
 void			fdf_exit(void);
 void			fdf_malloc_error(void);
 void			fdf_map_error(void);
+void			fdf_arg_error(void);
 
 /*
 **	Calcul of matrice
