@@ -18,6 +18,27 @@ int		expose_hook(t_env *e)
 	return (0);
 }
 
+void	display_controls(void)
+{
+	ft_putstr("\
+____________________________\n\
+CONTROLS:\n\
+Translation:\n\
+	Y: Key: UP, DOWN\n\
+	X: Key: LEFT, RIGHT\n\
+\n\
+Rotation:\n\
+	X: Keypad: 1, 4\n\
+	Y: Keypad: 2, 5\n\
+	Z: Keypad: 3, 6\n\
+\n\
+Zoom:\n\
+	IN: Keypad: +\n\
+	OUT: Keypad: -\n\
+____________________________\n\
+");
+}
+
 int		main(int argc, char **argv)
 {
 	t_env	*e;
@@ -32,6 +53,7 @@ int		main(int argc, char **argv)
 			fdf_map_error();
 		e->map = map;
 		get_center(e);
+		display_controls();
 		draw_windows("42 FDF", WINDOW_SIZE_W, WINDOW_SIZE_H, e);
 		adapt_map(e);
 		mlx_expose_hook(e->win, expose_hook, e);
