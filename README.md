@@ -3,7 +3,7 @@ Infographie project map relief.
 
 Installation
 ---
-Include Minilibix Library and lunch:
+Include Minilibix Library and launch:
 
     Make
 
