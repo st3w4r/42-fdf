@@ -6,7 +6,7 @@
 /*   By: ybarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/12 13:25:45 by ybarbier          #+#    #+#             */
-/*   Updated: 2014/12/12 13:25:49 by ybarbier         ###   ########.fr       */
+/*   Updated: 2015/03/06 23:35:55 by ybarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,18 @@ int		ft_map_line(char *map)
 {
 	int		fd;
 	int		nb_lines;
-	char	*buf;
+	char	buf;
 
 	fd = 0;
 	nb_lines = 0;
-	if (!(buf = (char*)malloc(sizeof(char))))
-		fdf_malloc_error();
 	if ((fd = open(map, O_RDONLY)) < 0)
 		fdf_map_error();
-	while (read(fd, buf, 1))
+	while (read(fd, &buf, 1))
 	{
-		if (ft_strcmp("\n", buf) == 0)
+		if (buf == '\n')
 			nb_lines++;
 	}
 	close(fd);
-	free(buf);
 	return (nb_lines);
 }
 
