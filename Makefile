@@ -6,7 +6,7 @@
 #    By: ybarbier <ybarbier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/03 11:35:46 by ybarbier          #+#    #+#              #
-#    Updated: 2015/02/19 17:14:12 by ybarbier         ###   ########.fr        #
+#    Updated: 2015/03/23 21:22:37 by ybarbier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEAD)
 	make -C libft/
 	$(CC) $(CFLAGS) -I $(PATH_INC) -c $(SRC)
-	$(CC) -o $(NAME) $(OBJ) -lm -L libft/ -lft -L/usr/X11/lib -lmlx -lXext -lX11
+	$(CC) -o $(NAME) $(OBJ) -lm -L libft/ -lft -lmlx -framework OpenGL -framework AppKit
 
 .PHONY: clean fclean
 

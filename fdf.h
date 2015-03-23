@@ -6,7 +6,7 @@
 /*   By: ybarbier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/09 15:00:21 by ybarbier          #+#    #+#             */
-/*   Updated: 2015/01/04 00:06:29 by ybarbier         ###   ########.fr       */
+/*   Updated: 2015/03/23 21:37:58 by ybarbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@
 /*
 **	Key code
 */
-# define KEY_ESC 65307
+# define KEY_ESC 53
 
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
-# define KEY_ZOOM_IN 65451
-# define KEY_ZOOM_OUT 65453
+# define KEY_ZOOM_IN 69
+# define KEY_ZOOM_OUT 78
 
-# define KEY_ROT_X_U 65460
-# define KEY_ROT_X_D 65457
-# define KEY_ROT_Y_U 65461
-# define KEY_ROT_Y_D 65458
-# define KEY_ROT_Z_U 65462
-# define KEY_ROT_Z_D 65459
+# define KEY_ROT_X_U 86
+# define KEY_ROT_X_D 83
+# define KEY_ROT_Y_U 87
+# define KEY_ROT_Y_D 84
+# define KEY_ROT_Z_U 88
+# define KEY_ROT_Z_D 85
 
 typedef struct	s_point {
 	double	x;
