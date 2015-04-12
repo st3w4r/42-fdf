@@ -41,12 +41,12 @@
 # define MOVE_ZOOM_IN 1.1
 # define MOVE_ZOOM_OUT 0.9
 
-# define MOVE_ROT_X_U -0.1
-# define MOVE_ROT_X_D 0.1
-# define MOVE_ROT_Y_U -0.1
-# define MOVE_ROT_Y_D 0.1
-# define MOVE_ROT_Z_U -0.1
-# define MOVE_ROT_Z_D 0.1
+# define MOVE_ROT_X_U -M_PI / 64
+# define MOVE_ROT_X_D M_PI / 64
+# define MOVE_ROT_Y_U -M_PI / 64
+# define MOVE_ROT_Y_D M_PI / 64
+# define MOVE_ROT_Z_U -M_PI / 64
+# define MOVE_ROT_Z_D M_PI / 64
 
 /*
 **	Key code
